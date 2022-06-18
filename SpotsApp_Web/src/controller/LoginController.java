@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-public class Login extends HttpServlet{
+public class LoginController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	private Gson gson;
@@ -18,6 +18,7 @@ public class Login extends HttpServlet{
 	public void init(ServletConfig conf) throws ServletException {
 		super.init(conf);
 		gson = new Gson();
+		
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
