@@ -27,7 +27,7 @@
      <% } %>
 	<% if (session.getAttribute("Errore")!=null && session.getAttribute("Errore").equals("Errore"))
      {%>
-         <div> Errore di login </div>
+         <div> Errore di login ! </div>
      <% }%>
    </body>
 </html>
