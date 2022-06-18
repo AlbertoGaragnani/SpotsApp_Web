@@ -14,7 +14,7 @@
         <input type="password" name="pwd" size="30"/><br><br>
         <input type="submit" value="Log In"/>
      </form>
-     
+
      <div>Non sei ancora registrato? <a href="Registrazione.jsp">Clicca Qui!</a></div>
 
 

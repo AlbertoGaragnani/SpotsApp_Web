@@ -1,11 +1,11 @@
 package mockDatabase;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.Admin;
 import model.Moderatore;
-import model.Utente;
 
 public class ModeratoriDB {
 
@@ -13,8 +13,9 @@ public class ModeratoriDB {
 	private Map<Moderatore, String> password;
 	
 	public ModeratoriDB() {
-		init();
-		
+		this.moderatori = new ArrayList<>();
+		this.password = new HashMap<>();
+		init();		
 	}
 	
 	public List<Moderatore> getModeratori() {
@@ -33,8 +34,12 @@ public class ModeratoriDB {
 		this.password = password;
 	}
 
-	private static void init() {
+	private void init() {
 		Moderatore m1 = new Moderatore("MarcoRossi", "rossimarco@gmail.com");
-		Moderatore m2 = new Moderatore("AntonioScarnera", "anthony11@gmail.com");	
+		Moderatore m2 = new Moderatore("AntonioScarnera", "anthony11@gmail.com");
+		this.moderatori.add(m1);
+		this.moderatori.add(m2);
+		this.password.put(m1, "12345");
+		this.password.put(m2, "Scarpiera321");
 	}
 }
