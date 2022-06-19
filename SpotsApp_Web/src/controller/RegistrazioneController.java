@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import mockDatabase.AdminDB;
+import mockDatabase.ModeratoriDB;
 import mockDatabase.UsersDB;
 import model.Utente;
 
@@ -35,6 +38,19 @@ public class RegistrazioneController extends HttpServlet{
 		password = (String) this.getServletContext().getAttribute("pwd");
 		email = (String) this.getServletContext().getAttribute("email");
 		this.getServletContext().setAttribute("verifica",false);
+		
+		//Effettuo controllo sulla lunghezza delle credenziali
+		if(username.length() > 32 || email.length() > 32 || password.length() > 32 )
+		{
+			//Messaggio di errore: Le credenziali possono essere al massimo di 32 caratteri
+			
+		}
+		
+		//Effettuo controllo su presenza della "@" nella mail
+		if(email.contains("@"))
+			//Messaggio di errore: la mail deve contenere "@"
+			
+			
 		if(username!=null && password!=null && email!=null)
 		{
 			Utente utente = new Utente();
@@ -46,19 +62,27 @@ public class RegistrazioneController extends HttpServlet{
 				this.getServletContext().setAttribute("verifica",true);
 				this.databaseUtenti.getUtenti().add(utente);
 				this.databaseUtenti.getPassword().put(utente, password);
-				//Forward alla pagina principale
+				//Forward alla pagina di login
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewLogin.jsp");
+				rd.forward(req, resp);
+				return;
 			}
 			else
 			{
 				//Messaggio di errore, l'utente è già presente
 				this.getServletContext().setAttribute("verifica",false);
-//				req.getRequestDispatcher("");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewRegistrazione.jsp");
+				rd.forward(req, resp);
+				return;
 			}
 		}
 		else
 		{
 			//Messaggio di errore, parametri inseriti errati
 			this.getServletContext().setAttribute("verifica",false);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewRegistrazione.jsp");
+			rd.forward(req, resp);
+			return;
 		}
 	}
 
