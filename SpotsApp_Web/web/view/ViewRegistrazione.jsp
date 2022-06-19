@@ -1,7 +1,6 @@
 <%@ page session="true"%>
 <html>
    <head>
-		<meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>
       <title>SpotsApp Registration</title>
 		<link type="text/css" href="styles/default.css" rel="stylesheet"></link>
    </head>

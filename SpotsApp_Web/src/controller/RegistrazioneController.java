@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import mockDatabase.UsersDB;
 import model.Utente;
 
@@ -18,14 +16,11 @@ public class RegistrazioneController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Gson gson;
-	
 	private UsersDB databaseUtenti;
 	
 	public void init(ServletConfig conf) throws ServletException 
 	{
 		super.init(conf);
-		gson = new Gson();
 		databaseUtenti = new UsersDB();
 	}
 	

@@ -1,7 +1,6 @@
 <%@ page session="true"%>
 <html>
    <head>
-        <meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>
       <title>SpotsApp Login</title>
         <link type="text/css" href="styles/default.css" rel="stylesheet"></link>
    </head>
@@ -15,7 +14,7 @@
         <input type="submit" value="Log In"/>
      </form>
 
-     <div>Non sei ancora registrato? <a href="view/Registrazione.jsp">Clicca Qui!</a></div>
+     <div>Non sei ancora registrato? <a href="view/ViewRegistrazione.jsp">Clicca Qui!</a></div>
 
 	<% if (session.getAttribute("Errore")!=null && session.getAttribute("Errore").equals("Errore"))
      {%>
