@@ -15,16 +15,31 @@ import model.*;
 public class LoginController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	private AdminDB adminDB;
-	private ModeratoriDB moderatoriDB;
-	private UsersDB usersDB;
+	private AdminDB databaseAdmin;
+	private ModeratoriDB databaseModeratori;
+	private UsersDB databaseUtenti;
 	
 	
 	public void init(ServletConfig conf) throws ServletException {
 		super.init(conf);
-		this.adminDB = new AdminDB();
-		this.moderatoriDB = new ModeratoriDB();
-		this.usersDB = new UsersDB();
+		if(this.getServletContext().getAttribute("UsersDB") == null) {
+			databaseUtenti = new UsersDB();
+			this.getServletContext().setAttribute("UsersDB", databaseUtenti);
+		}
+		else
+			databaseUtenti = (UsersDB) this.getServletContext().getAttribute("UsersDB");
+		if(this.getServletContext().getAttribute("ModeratoriDB") == null) {
+			databaseModeratori = new ModeratoriDB();
+			this.getServletContext().setAttribute("ModeratoriDB", databaseModeratori);
+		}
+		else
+			databaseModeratori = (ModeratoriDB) this.getServletContext().getAttribute("ModeratoriDB");
+		if(this.getServletContext().getAttribute("AdminDB") == null) {
+			databaseAdmin = new AdminDB();
+			this.getServletContext().setAttribute("AdminDB", databaseAdmin);
+		}
+		else
+			databaseAdmin = (AdminDB) this.getServletContext().getAttribute("AdminDB");
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -33,9 +48,10 @@ public class LoginController extends HttpServlet{
 		String passwordToCheck = req.getParameter("pwd");
 		String password = null;
 		Utente utente = new Utente();
-		for(Admin user : this.adminDB.getAdmin()) {
+		//Ciclo sui DBMock per trovare l'utente associato all'username inserito
+		for(Admin user : this.databaseAdmin.getAdmin()) {
 			if(user.getUsername().equals(username)) {
-				password = this.adminDB.getPassword().get(user);
+				password = this.databaseAdmin.getPassword().get(user);
 				req.getSession().setAttribute("tipoUtente", "Admin");
 				utente = user;
 			}
@@ -43,9 +59,9 @@ public class LoginController extends HttpServlet{
 		
 		if(password == null)
 		{
-			for(Moderatore user : this.moderatoriDB.getModeratori()) {
+			for(Moderatore user : this.databaseModeratori.getModeratori()) {
 				if(user.getUsername().equals(username)) {
-					password = this.moderatoriDB.getPassword().get(user);
+					password = this.databaseModeratori.getPassword().get(user);
 					req.getSession().setAttribute("tipoUtente", "Moderatore");
 					utente = user;
 				}
@@ -54,9 +70,9 @@ public class LoginController extends HttpServlet{
 		
 		if(password == null)
 		{
-			for(Utente user : this.usersDB.getUtenti()) {
+			for(Utente user : this.databaseUtenti.getUtenti()) {
 				if(user.getUsername().equals(username)) {
-					password = this.usersDB.getPassword().get(user);
+					password = this.databaseUtenti.getPassword().get(user);
 					req.getSession().setAttribute("tipoUtente", "Utente");
 					utente = user;
 				}
@@ -65,21 +81,24 @@ public class LoginController extends HttpServlet{
 		
 		if(password != null)
 		{
+			//Controllo se la password è stata inserita correttamente e nel caso vado a Gestione Utente
 			if(passwordToCheck.equals(password)) {
 				req.getSession().setAttribute("currentUser", utente);
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");	
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewGestioneUtente.jsp");	
 				rd.forward(req, resp);
 			}
+			//La password è errata
 			else {
 				req.getSession().setAttribute("Errore", "Errore");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");	
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");	
 				rd.forward(req, resp);
 			}
 		}
+		//Non è stato trovato nessun utente con l'username inserito nel database
 		else
 		{
 			req.getSession().setAttribute("Errore", "Errore");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");	
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");	
 			rd.forward(req, resp);
 		}
 	}

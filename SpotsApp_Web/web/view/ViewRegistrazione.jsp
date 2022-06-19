@@ -6,7 +6,7 @@
    </head>
    <body>
 
-     <form action="Registration" method="post">
+     <form action="/SpotsApp/registrazione" method="post">
       		<p>User:</p>
       		<input type="text" name="userName" size="30"/><br>
       		<p>email:</p>
@@ -34,8 +34,27 @@
       			<div>Errore registrazione: Le credenziali devono essere di massimo 32 caratteri </div>
       			<%
       		}
-      	}
-      	
+      		if(session.getAttribute("Errore").equals("ErroreGiaPresente"))
+      		{
+      			%>
+      			<div>Errore registrazione: L'username scelto è gia presente nel database </div>
+      			<%
+      		}
+      		if(session.getAttribute("Errore").equals("ErroreParametri"))
+      		{
+      			%>
+      			<div>Errore registrazione: I parametri del form non sono stati inseriti correttamente </div>
+      			<%
+      		}
+      		if(session.getAttribute("Errore").equals("ErrorePassword"))
+      		{
+      			%>
+      			<div>Errore registrazione: Le due password devono essere uguali </div>
+      			<%
+      		}
+      		
+      		session.removeAttribute("Errore");
+      	}      	
       	
       	%>
       	

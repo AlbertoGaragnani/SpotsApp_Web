@@ -7,6 +7,6 @@ public class Moderatore extends Utente{
 	}
 	
 	public Moderatore(String username, String email) {
-		super();
+		super(username, email);
 	}
 }
