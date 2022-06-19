@@ -17,14 +17,6 @@
 
      <div>Non sei ancora registrato? <a href="view/Registrazione.jsp">Clicca Qui!</a></div>
 
-
-     <% if (session.getAttribute("currentUser")!=null)
-     {%>
-         <div>
-         Benvenuto <%= session.getAttribute("currentUser") %>
-         </div>
-
-     <% } %>
 	<% if (session.getAttribute("Errore")!=null && session.getAttribute("Errore").equals("Errore"))
      {%>
          <div> Errore di login ! </div>

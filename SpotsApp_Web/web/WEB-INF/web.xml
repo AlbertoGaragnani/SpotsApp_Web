@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
-    <display-name>StartKit</display-name>
+    <display-name>SpotsApp</display-name>
     <description>
-      This is an empty project that can be used as a template for your own ones
+      This is a future best project
     </description>
 
 	<!-- Context attributes to be used throughout the application -->
@@ -18,19 +18,29 @@
 	
     <!-- Define servlets that are included in the application -->
 	<servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
+        <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>RegistrazioneController</servlet-name>
+        <servlet-class>controller.RegistrazioneController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>RegistrazioneController</servlet-name>
+        <url-pattern>/registrazione</url-pattern>
     </servlet-mapping>
 	<!-- Welcome pages -->
 	<!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
 	
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>/view/ViewLogin.jsp</welcome-file>
 	</welcome-file-list>
 		
 	<!-- Handle exceptions and errors -->

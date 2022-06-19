@@ -17,7 +17,6 @@ import model.*;
 public class LoginController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	private Gson gson;
 	private AdminDB adminDB;
 	private ModeratoriDB moderatoriDB;
 	private UsersDB usersDB;
@@ -25,19 +24,9 @@ public class LoginController extends HttpServlet{
 	
 	public void init(ServletConfig conf) throws ServletException {
 		super.init(conf);
-		gson = new Gson();
 		this.adminDB = new AdminDB();
 		this.moderatoriDB = new ModeratoriDB();
 		this.usersDB = new UsersDB();
-	}
-	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		//Restituzione dati in AJAX
-		String res = "";
-		res = gson.toJson(res);
-		resp.getWriter().println(res);
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
