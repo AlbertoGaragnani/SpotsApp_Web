@@ -15,7 +15,7 @@
         <input type="submit" value="Log In"/>
      </form>
 
-     <div>Non sei ancora registrato? <a href="Registrazione.jsp">Clicca Qui!</a></div>
+     <div>Non sei ancora registrato? <a href="view/Registrazione.jsp">Clicca Qui!</a></div>
 
 
      <% if (session.getAttribute("currentUser")!=null)
