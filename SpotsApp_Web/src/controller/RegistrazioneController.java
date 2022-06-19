@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import mockDatabase.AdminDB;
-import mockDatabase.ModeratoriDB;
 import mockDatabase.UsersDB;
 import model.Utente;
 
@@ -42,13 +40,24 @@ public class RegistrazioneController extends HttpServlet{
 		//Effettuo controllo sulla lunghezza delle credenziali
 		if(username.length() > 32 || email.length() > 32 || password.length() > 32 )
 		{
-			//Messaggio di errore: Le credenziali possono essere al massimo di 32 caratteri
 			
+			//Messaggio di errore: Le credenziali possono essere al massimo di 32 caratteri
+			req.getSession().setAttribute("Errore","ErroreLunghezza");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");
+			rd.forward(req, resp);
+			return;
 		}
 		
 		//Effettuo controllo su presenza della "@" nella mail
 		if(email.contains("@"))
+		{
 			//Messaggio di errore: la mail deve contenere "@"
+			req.getSession().setAttribute("Errore","ErroreMail");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");
+			rd.forward(req, resp);
+			return;
+		}
+			
 			
 			
 		if(username!=null && password!=null && email!=null)
@@ -63,7 +72,7 @@ public class RegistrazioneController extends HttpServlet{
 				this.databaseUtenti.getUtenti().add(utente);
 				this.databaseUtenti.getPassword().put(utente, password);
 				//Forward alla pagina di login
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewLogin.jsp");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewLogin.jsp");
 				rd.forward(req, resp);
 				return;
 			}
@@ -71,7 +80,7 @@ public class RegistrazioneController extends HttpServlet{
 			{
 				//Messaggio di errore, l'utente è già presente
 				this.getServletContext().setAttribute("verifica",false);
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewRegistrazione.jsp");
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewRegistrazione.jsp");
 				rd.forward(req, resp);
 				return;
 			}
@@ -80,7 +89,7 @@ public class RegistrazioneController extends HttpServlet{
 		{
 			//Messaggio di errore, parametri inseriti errati
 			this.getServletContext().setAttribute("verifica",false);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/ViewRegistrazione.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("view/ViewRegistrazione.jsp");
 			rd.forward(req, resp);
 			return;
 		}

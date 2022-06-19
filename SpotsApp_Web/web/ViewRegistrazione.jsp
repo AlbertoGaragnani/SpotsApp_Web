@@ -19,6 +19,27 @@
       		<input type="submit" value="Register"/>
       	</form>
       	
+      	<%
+      	
+      	if(session.getAttribute("Errore") != null)
+      	{
+      		if(session.getAttribute("Errore").equals("ErroreMail"))
+      		{
+      			%>
+      			<div>Errore registrazione: la mail deve contenere "@"</div>
+      			<% 	
+      		}
+      		if(session.getAttribute("Errore").equals("ErroreLunghezza"))
+      		{
+      			%>
+      			<div>Errore registrazione: Le credenziali devono essere di massimo 32 caratteri </div>
+      			<%
+      		}
+      	}
+      	
+      	
+      	%>
+      	
       		
 
 
