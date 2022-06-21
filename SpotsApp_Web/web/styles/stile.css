@@ -1,0 +1,46 @@
+body {
+ font-family: Verdana, Helvetica, sans-serif;
+ font-size: 25pt;
+ background: white ; 
+ color: #0bbaf4;
+}
+
+input[type=text], input[type=password]{
+	padding: 20px;
+	display: inline-block;
+  	float: left;
+  	margin:2px;
+}
+
+form{
+	padding:40px;
+	display:inline-block;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+    padding: 50 px;
+}
+ 
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #d8d8d8;
+  border: 1px solid black;
+  color: black;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size:15pt;
+  font-weight:bold;
+  float: center;
+  
+}
+
+#link{
+	font-size:9pt;
+	 color: black;
+}
