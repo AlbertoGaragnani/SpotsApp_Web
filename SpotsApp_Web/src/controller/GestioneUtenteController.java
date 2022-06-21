@@ -52,6 +52,8 @@ public class GestioneUtenteController extends HttpServlet{
 		//cerca spot indirizzo ed attivitÃ , funzione esterna la metto qua per cercare gli spot risultato 
 		String attivita = req.getParameter("attivita");
 		String indirizzo = req.getParameter("indirizzo");
+		System.out.println("attivitò : "+ attivita);
+		System.out.println("indirizzo : "+ indirizzo);
 		if(attivita.isBlank() && indirizzo.isBlank())
 		{
 			//Parametri inseriti non validi, solo tabulazioni o spazi

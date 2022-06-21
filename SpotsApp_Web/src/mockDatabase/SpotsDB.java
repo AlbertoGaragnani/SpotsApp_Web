@@ -19,6 +19,7 @@ public class SpotsDB {
 	
 	public SpotsDB() {
 		this.spots = new ArrayList<>();
+		this.databaseUtenti = new UsersDB();
 		init();		
 	}
 	
@@ -40,9 +41,9 @@ public class SpotsDB {
 	*/
 	
 	private void init() {
-		Utente a1 = this.databaseUtenti.getUtenti().get(2);
-		Utente a2 = this.databaseUtenti.getUtenti().get(3);
-		Utente a3 = this.databaseUtenti.getUtenti().get(4);
+		Utente a1 = this.databaseUtenti.getUtenti().get(0);
+		Utente a2 = this.databaseUtenti.getUtenti().get(1);
+		Utente a3 = this.databaseUtenti.getUtenti().get(2);
 		Map<String,Double> mappa = new HashMap<>();
 		List<Recensione> lista = new ArrayList<>();
 		Spot sp = new Spot();

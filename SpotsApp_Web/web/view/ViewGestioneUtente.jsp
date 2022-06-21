@@ -7,7 +7,7 @@
    <head>
 	<!--	<meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>   -->
       <title>GestioneUtente</title>
-		<link type="text/css" href="styles/default.css" rel="stylesheet"></link>
+		<link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
 		<script type="text/javascript" src="scripts/request.js"></script>
 		<script type="text/javascript" src="scripts/utils.js"></script>
    </head>
@@ -20,7 +20,7 @@
 	   			<label>Indirizzo <input type="text" name="indirizzo" size="30"/></label><br>
 	      		<label>Attivita 
 	      		<select name="attivita">
-	      		<option value="" selected disabled hidden>Attivita</option>
+	      		<option value="" >Attivita</option>
 	      			<%
 	      			for(Attivita a : Attivita.values())
 	      			{
@@ -49,7 +49,6 @@
     	 		<li>
     	 			<p><%= s.getNome() %></p>
     	 			<p><%= s.getIndirizzo() %></p>
-    	 			<img src=<%=// s.getImmagini()[0] %> width="500" height="333">
     	 			<input type="button" value="Visualizza" onClick="">
     	 		</li>
     	 		<%
