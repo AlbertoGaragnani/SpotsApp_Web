@@ -16,7 +16,7 @@
       		<p>Conferma Password:</p>
       		<input type="password" name="pwdconfirm" size="30"/><br><br>
       		<input type="submit" value="Register"/>
-      	</form>
+     </form>
       	
       	<%
       	

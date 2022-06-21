@@ -36,6 +36,16 @@
         <servlet-name>RegistrazioneController</servlet-name>
         <url-pattern>/registrazione</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GestioneUtenteController</servlet-name>
+        <servlet-class>controller.GestioneUtenteController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>GestioneUtenteController</servlet-name>
+        <url-pattern>/gestioneUtente</url-pattern>
+    </servlet-mapping>
 	<!-- Welcome pages -->
 	<!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
 	

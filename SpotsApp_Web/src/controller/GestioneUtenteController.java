@@ -64,7 +64,8 @@ public class GestioneUtenteController extends HttpServlet{
 			List<Spot> listaSpot = new ArrayList<>();
 			listaSpot = ricercaSpot(indirizzo,attivita);
 			req.getSession().setAttribute("listaSpot",listaSpot);
-			
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/SpotsApp/view/ViewGestioneUtente.jsp");
+			rd.forward(req, resp);
 		}
 		
 	}
