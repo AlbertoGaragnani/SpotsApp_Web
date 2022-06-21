@@ -64,7 +64,6 @@ public class GestioneUtenteController extends HttpServlet{
 			List<Spot> listaSpot = new ArrayList<>();
 			listaSpot = ricercaSpot(indirizzo,attivita);
 			req.getSession().setAttribute("listaSpot",listaSpot);
-			
 		}
 		
 	}

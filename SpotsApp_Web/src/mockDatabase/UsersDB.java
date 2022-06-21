@@ -39,13 +39,22 @@ public class UsersDB {
 		Utente u2 = new Utente("Ceron", "marcoceron@libero.it");
 		Utente u3 = new Utente("KGW34", "kyleweems@gmail.it");
 		Utente u4 = new Utente("GinoCuccarolo", "cuccathepivot@libero.it");
+		Utente a1 = new Utente("Alberto", "garagnanialberto@gmail.com");
+		Utente a2 = new Utente("OscarGugliotta", "guglio72@gmail.com");
+		Utente a3 = new Utente("MortellaroChris", "bisubusui@hotmail.com");
 		this.utenti.add(u1);
 		this.utenti.add(u2);
 		this.utenti.add(u3);
 		this.utenti.add(u4);
+		this.utenti.add(a1);
+		this.utenti.add(a2);
+		this.utenti.add(a3);
 		this.password.put(u1, "batman");
 		this.password.put(u2, "qwerty");
 		this.password.put(u3, "simplePassword");
 		this.password.put(u4, "aimfromdowntown");
+		this.password.put(a1, "Cihiciamo");
+		this.password.put(a2, "NOOONOOsisiSI");
+		this.password.put(a3, "Throenwsm");
 	}
 }
