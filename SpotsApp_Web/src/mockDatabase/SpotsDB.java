@@ -15,6 +15,7 @@ import model.Utente;
 public class SpotsDB {
 
 	private List<Spot> spots;
+	private UsersDB databaseUtenti;
 	
 	public SpotsDB() {
 		this.spots = new ArrayList<>();
@@ -39,9 +40,9 @@ public class SpotsDB {
 	*/
 	
 	private void init() {
-		Utente a1 = new Utente("Alberto", "garagnanialberto@gmail.com");
-		Utente a2 = new Utente("OscarGugliotta", "guglio72@gmail.com");
-		Utente a3 = new Utente("MortellaroChris", "bisubusui@hotmail.com");
+		Utente a1 = this.databaseUtenti.getUtenti().get(2);
+		Utente a2 = this.databaseUtenti.getUtenti().get(3);
+		Utente a3 = this.databaseUtenti.getUtenti().get(4);
 		Map<String,Double> mappa = new HashMap<>();
 		List<Recensione> lista = new ArrayList<>();
 		Spot sp = new Spot();
