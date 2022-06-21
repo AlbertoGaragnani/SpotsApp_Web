@@ -25,7 +25,7 @@ public class Spot {
 	}
 
 	public Spot(String id, String usernameUtente, String nome, String indirizzo, File[] immagini,
-			List<Attivita> attività, Map<String, Double> affluenza, List<Recensione> recensioni) {
+			List<Attivita> attivita, Map<String, Double> affluenza, List<Recensione> recensioni) {
 		super();
 		this.id = id;
 		this.usernameUtente = usernameUtente;
@@ -33,7 +33,7 @@ public class Spot {
 		this.indirizzo = indirizzo;
 		this.immagini = immagini;
 		this.presenzeSegnalate = 0;
-		this.attivita = attività;
+		this.attivita = attivita;
 		this.affluenza = affluenza;
 		this.recensioni = recensioni;
 	}
@@ -90,8 +90,8 @@ public class Spot {
 		return attivita;
 	}
 
-	public void setAttivita(List<Attivita> attività) {
-		this.attivita = attività;
+	public void setAttivita(List<Attivita> attivitï¿½) {
+		this.attivita = attivitï¿½;
 	}
 	
 	public void setAttivita(Attivita attivita) {
