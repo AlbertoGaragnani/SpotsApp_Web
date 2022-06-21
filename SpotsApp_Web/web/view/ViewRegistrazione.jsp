@@ -2,21 +2,31 @@
 <html>
    <head>
       <title>SpotsApp Registration</title>
-		<link type="text/css" href="styles/default.css" rel="stylesheet"></link>
+		<link type="text/css" href="/SpotsApp/styles/stile.css" rel="stylesheet"></link>
    </head>
    <body>
-
+   
+   			<div>
+				<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
+				<img src="/SpotsApp/images/Icon.png" align="right"/>
+			</div>
+			<br>
+	<div align="center">
+			<h1>REGISTRAZIONE</h1>
+			<br/>
      <form action="/SpotsApp/registrazione" method="post">
-      		<p>User:</p>
-      		<input type="text" name="userName" size="30"/><br>
-      		<p>email:</p>
+      		<label>Email: </label>
       		<input type="text" name="email" size="30"/><br><br>
-      		<p>Password:</p>
+      		<label>Username: </label>
+      		<input type="text" name="Username" size="30"/><br><br>
+      		<label>Password: </label>
       		<input type="password" name="pwd" size="30"/><br><br>
-      		<p>Conferma Password:</p>
+      		<label>Conferma pw: </label>
       		<input type="password" name="pwdconfirm" size="30"/><br><br>
       		<input type="submit" value="Register"/>
-      	</form>
+      </form>
+      
+      </div>
       	
       	<%
       	
@@ -59,7 +69,7 @@
       	%>
       	
       		
-
+		<div id="link" align="center">Hai già un account? <a href="/SpotsApp/view/ViewLogin.jsp">Clicca Qui!</a></div>
 
 
    </body>

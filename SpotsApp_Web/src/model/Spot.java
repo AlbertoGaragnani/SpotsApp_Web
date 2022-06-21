@@ -90,8 +90,8 @@ public class Spot {
 		return attivita;
 	}
 
-	public void setAttivita(List<Attivita> attivit�) {
-		this.attivita = attivit�;
+	public void setAttivita(List<Attivita> attivita) {
+		this.attivita = attivita;
 	}
 	
 	public void setAttivita(Attivita attivita) {
