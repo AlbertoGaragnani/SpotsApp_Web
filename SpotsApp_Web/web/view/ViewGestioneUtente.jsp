@@ -8,7 +8,7 @@
 	<!--	<meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>   -->
       <title>GestioneUtente</title>
 		<link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
-		<script type="text/javascript" src="scripts/VisualizzaSpot.js"></script>
+		<script type="text/javascript" src="scripts/GestioneUtente.js"></script>
 		<script type="text/javascript" src="scripts/utils.js"></script>
    </head>
    <body>
@@ -63,7 +63,7 @@
      <div>
    		<input type="button" value="Visualizza_Profilo"><br>
    		<input type="button" value="Logout"><br>
-   		<input type="button" value="Aggiungi Spot"><br>
+   		<input type="button" value="Aggiungi_Spot"><br>
    </div>
    </body>
 </html>
