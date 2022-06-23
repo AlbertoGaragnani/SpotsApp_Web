@@ -49,7 +49,7 @@
     	 		<li>
     	 			<p><%= s.getNome() %></p>
     	 			<p><%= s.getIndirizzo() %></p>
-    	 			<input type="button" value="Visualizza" onClick="visualizzaSpot(this)">
+    	 			<input type="button" id=<%= s.getId() %> value="Visualizza" onClick="visualizzaSpot(this)">
     	 		</li>
     	 		<%
     	 	}
@@ -61,7 +61,7 @@
      %>
      
      <div>
-   		<input type="button" value="Visualizza Profilo"><br>
+   		<input type="button" value="Visualizza_Profilo"><br>
    		<input type="button" value="Logout"><br>
    		<input type="button" value="Aggiungi Spot"><br>
    </div>

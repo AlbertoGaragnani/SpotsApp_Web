@@ -73,7 +73,13 @@ public class GestioneUtenteController extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		System.out.println(req.getAttribute("operazione") + "" + req.getAttribute("idSpot"));
+		String operazione = req.getParameter("operazione");
+		if(operazione.equals("Visualizza"))
+		{
+			//Codice visualizza spot specifico
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
+			rd.forward(req, resp);
+		}
 	}
 	
 	private List<Spot> ricercaSpot(String indirizzo, String attivita)
