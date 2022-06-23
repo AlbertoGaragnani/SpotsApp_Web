@@ -52,8 +52,6 @@ public class GestioneUtenteController extends HttpServlet{
 		//cerca spot indirizzo ed attivitÃ , funzione esterna la metto qua per cercare gli spot risultato 
 		String attivita = req.getParameter("attivita");
 		String indirizzo = req.getParameter("indirizzo");
-		System.out.println("attivitò : "+ attivita);
-		System.out.println("indirizzo : "+ indirizzo);
 		if(attivita.isBlank() && indirizzo.isBlank())
 		{
 			//Parametri inseriti non validi, solo tabulazioni o spazi
@@ -66,9 +64,16 @@ public class GestioneUtenteController extends HttpServlet{
 			List<Spot> listaSpot = new ArrayList<>();
 			listaSpot = ricercaSpot(indirizzo,attivita);
 			req.getSession().setAttribute("listaSpot",listaSpot);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewGestioneUtente.jsp");
+			rd.forward(req, resp);
 
 		}
 		
+	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
+		System.out.println(req.getAttribute("operazione") + "" + req.getAttribute("idSpot"));
 	}
 	
 	private List<Spot> ricercaSpot(String indirizzo, String attivita)

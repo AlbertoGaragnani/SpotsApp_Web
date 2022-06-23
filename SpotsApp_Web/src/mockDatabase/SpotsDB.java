@@ -50,6 +50,7 @@ public class SpotsDB {
 		sp.setId("SP0001");
 		sp.setUsernameUtente(a1.getUsername());
 		sp.setNome("Calamaretto");
+		sp.setIndirizzo("Via dei calamaretti");
 		sp.setAttivita(Attivita.CLIFFDIVING);
 		//Settare le immagini
 		sp.setPresenzeSegnalate(2);
@@ -63,6 +64,7 @@ public class SpotsDB {
 		sp.setUsernameUtente(a1.getUsername());
 		sp.setNome("Unipol Arena");
 		sp.setAttivita(Attivita.BASKETBALL);
+		sp.setAttivita(Attivita.CLIFFDIVING);
 		//Settare le immagini
 		sp.setPresenzeSegnalate(0);
 		sp.setAffluenza(mappa);
