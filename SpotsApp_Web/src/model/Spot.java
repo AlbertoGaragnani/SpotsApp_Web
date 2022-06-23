@@ -1,30 +1,34 @@
 package model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Spot {
+public class Spot implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private String usernameUtente;
 	private String nome;
 	private String indirizzo;
-	private File[] immagini;
+	private List<File> immagini;
 	private int presenzeSegnalate;
 	private List<Attivita> attivita;
 	private Map<String, Double> affluenza;
 	private List<Recensione> recensioni;
 	
 	public Spot() {
+		this.immagini = new ArrayList<>();
 		this.attivita = new ArrayList<>();
 		this.affluenza = new HashMap<>();
 		this.recensioni = new ArrayList<>();
 	}
 
-	public Spot(String id, String usernameUtente, String nome, String indirizzo, File[] immagini,
+	public Spot(String id, String usernameUtente, String nome, String indirizzo, List<File> immagini,
 			List<Attivita> attivita, Map<String, Double> affluenza, List<Recensione> recensioni) {
 		super();
 		this.id = id;
@@ -70,12 +74,16 @@ public class Spot {
 		this.indirizzo = indirizzo;
 	}
 
-	public File[] getImmagini() {
+	public List<File> getImmagini() {
 		return immagini;
 	}
 
-	public void setImmagini(File[] immagini) {
+	public void setImmagini(List<File> immagini) {
 		this.immagini = immagini;
+	}
+	
+	public void setImmagini(File immagine) {
+		this.immagini.add(immagine);
 	}
 
 	public int getPresenzeSegnalate() {

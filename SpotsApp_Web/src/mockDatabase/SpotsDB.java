@@ -53,6 +53,8 @@ public class SpotsDB {
 		sp.setIndirizzo("Via dei calamaretti");
 		sp.setAttivita(Attivita.CLIFFDIVING);
 		//Settare le immagini
+		sp.setImmagini(new File("/SpotsApp/images/calamaretto1.jpg"));
+		sp.setImmagini(new File("/SpotsApp/images/calamaretto2.jpg"));
 		sp.setPresenzeSegnalate(2);
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
@@ -64,7 +66,7 @@ public class SpotsDB {
 		sp.setUsernameUtente(a1.getUsername());
 		sp.setNome("Unipol Arena");
 		sp.setAttivita(Attivita.BASKETBALL);
-		sp.setAttivita(Attivita.CLIFFDIVING);
+		//sp.setAttivita(Attivita.CLIFFDIVING);
 		//Settare le immagini
 		sp.setPresenzeSegnalate(0);
 		sp.setAffluenza(mappa);

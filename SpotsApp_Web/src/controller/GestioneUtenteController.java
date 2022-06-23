@@ -74,12 +74,34 @@ public class GestioneUtenteController extends HttpServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		String operazione = req.getParameter("operazione");
-		if(operazione.equals("Visualizza"))
-		{
-			//Codice visualizza spot specifico
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
-			rd.forward(req, resp);
-		}
+        if(operazione.equals("Visualizza"))
+        {
+            //Manda a VisualizzaSpot
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
+            rd.forward(req, resp);
+        }
+        else if(operazione.equals("Aggiungi_Spot"))
+        {
+        	//Manda a AggiungiSpot
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewAggiungiSpot.jsp");
+            rd.forward(req, resp); 
+        }
+        else if(operazione.equals("Logout"))
+        {
+        	//Effettua logout
+        	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");
+            rd.forward(req, resp); 
+        }
+        else if(operazione.equals("Visualizza_Profilo"))
+        {
+        	//Manda a VisualizzaProfilo
+        	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaProfilo.jsp");
+            rd.forward(req, resp); 
+        }
+        else
+        {
+        	//Errore
+        }
 	}
 	
 	private List<Spot> ricercaSpot(String indirizzo, String attivita)

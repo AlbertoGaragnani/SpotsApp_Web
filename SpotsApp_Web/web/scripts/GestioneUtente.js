@@ -5,7 +5,7 @@ function requestInterestIframe() {
 	// non riesco tuttavia a intervenire per parsificarlo! è il browser che renderizza il src del iframe!
 }
 
-function requestAJAX(xhr, val, idSpot) {
+function requestAJAX(xhr, val) {
 	// impostazione controllo e stato della richiesta
 	// xhr.onreadystatechange = function() { callback(xhr); };
 	// impostazione richiesta asincrona in GET
@@ -27,13 +27,42 @@ function visualizzaSpot(myB)
 {
 	var xhr = myGetXmlHttpRequest();
 	var val=myB.value;
-	var idSpot = myB.id;
-	//var val=document.getElementById("text").value;         esempio con document.getElementById()
 	
-	//var val=document.getElementById('c').value;
-	//var val=myGetElementById('c').value;
 	if ( xhr ) 
-		requestAJAX(xhr, val, idSpot);
+		requestAJAX(xhr, val);
+	else 
+		requestInterestIframe();
+}
+
+function aggiungiSpot(myB)
+{
+	var xhr = myGetXmlHttpRequest();
+	var val=myB.value;
+	
+	if ( xhr ) 
+		requestAJAX(xhr, val);
+	else 
+		requestInterestIframe();
+}
+
+function visualizzaProfilo(myB)
+{
+	var xhr = myGetXmlHttpRequest();
+	var val=myB.value;
+	
+	if ( xhr ) 
+		requestAJAX(xhr, val);
+	else 
+		requestInterestIframe();
+}
+
+function logout(myB)
+{
+	var xhr = myGetXmlHttpRequest();
+	var val=myB.value;
+	
+	if ( xhr ) 
+		requestAJAX(xhr, val);
 	else 
 		requestInterestIframe();
 }

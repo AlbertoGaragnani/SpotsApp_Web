@@ -45,10 +45,12 @@
     	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
     	 	for(Spot s : listaSpot)
     	 	{
+    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
     	 		%>
     	 		<li>
     	 			<p><%= s.getNome() %></p>
     	 			<p><%= s.getIndirizzo() %></p>
+    	 			<img src=<%= img %>/>
     	 			<input type="button" id=<%= s.getId() %> value="Visualizza" onClick="visualizzaSpot(this)">
     	 		</li>
     	 		<%
@@ -61,9 +63,9 @@
      %>
      
      <div>
-   		<input type="button" value="Visualizza_Profilo"><br>
-   		<input type="button" value="Logout"><br>
-   		<input type="button" value="Aggiungi_Spot"><br>
+   		<input type="button" value="Visualizza_Profilo" onClick="visualizzaProfilo(this)"><br>
+   		<input type="button" value="Logout" onClick="logout(this)"><br>
+   		<input type="button" value="Aggiungi_Spot" onClick="aggiungiSpot(this)"><br>
    </div>
    </body>
 </html>
