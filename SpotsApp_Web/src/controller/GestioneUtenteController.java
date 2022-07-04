@@ -41,12 +41,13 @@ public class GestioneUtenteController extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		System.out.println("sono in do post");
 		//cerca spot indirizzo ed attività, funzione esterna la metto qua per cercare gli spot risultato 
 		String attivita = req.getParameter("attivita");
 		String indirizzo = req.getParameter("indirizzo");
 		if(req.getParameter("cercaspot") != null)
 		{
+			System.out.println(db.getSpots().get(db.getSpots().size() - 1).getNome());
+			System.out.println(db.getSpots().get(db.getSpots().size() - 1).getAttivita().get(0));
 			if(attivita.isBlank() && indirizzo.isBlank())
 			{
 				//Parametri inseriti non validi, solo tabulazioni o spazi
@@ -67,11 +68,6 @@ public class GestioneUtenteController extends HttpServlet{
 
 			}
 		}
-		
-		
-		
-		
-		
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -96,20 +92,14 @@ public class GestioneUtenteController extends HttpServlet{
 			rd.forward(req, resp);
 		}
 		else if(req.getParameter("visualizzaspot") != null)
-		{
-			System.out.println("provo a visualizzare");
-			
+		{			
 			String idSpot = req.getParameter("idSpot");
 			
 			req.getSession().setAttribute("idSpot", idSpot);
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
 			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
 			//rd.forward(req, resp);
-		}
-		
-		
-		
-		
+		}	
 	}
 	
 	private List<Spot> ricercaSpot(String indirizzo, String attivita)

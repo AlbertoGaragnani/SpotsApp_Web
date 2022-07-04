@@ -55,9 +55,6 @@ public class AggiungiSpotController extends HttpServlet{
 		 for(Part part : req.getParts()) {
 			 part.write("C:\\Users\\Utente\\git\\SpotsApp_Web\\SpotsApp_Web\\web\\images\\" + fileName);
 		 }
-		 System.out.println("Attivita inserite:");
-		 for(Attivita a : listaAttivita)
-			 System.out.println(a.toString());
 		 if(nomeSpot.isBlank() || indirizzoSpot.isBlank() || listaAttivita.isEmpty())
 		 {
 			 //Parametri inseriti non validi, solo tabulazioni o spazi
@@ -72,6 +69,9 @@ public class AggiungiSpotController extends HttpServlet{
 			 //Settaggio nome ed indirizzo
 		     spot.setNome(nomeSpot);
 		     spot.setIndirizzo(indirizzoSpot);
+		     
+		     //Settaggio attività
+		     spot.setAttivita(listaAttivita);
 		     
 		     //Settaggio usernameUtente
 		     Utente utente = (Utente) req.getSession().getAttribute("currentUser");
