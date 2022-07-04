@@ -51,6 +51,8 @@ public class GestioneUtenteController extends HttpServlet{
 			{
 				//Parametri inseriti non validi, solo tabulazioni o spazi
 				req.getSession().setAttribute("Errore", "I due parametri passati sono vuoti");
+				resp.sendRedirect("view/ViewGestioneUtente.jsp");
+
 			}
 			else
 			{
@@ -96,7 +98,10 @@ public class GestioneUtenteController extends HttpServlet{
 		else if(req.getParameter("visualizzaspot") != null)
 		{
 			System.out.println("provo a visualizzare");
-			req.getSession().setAttribute("idSpot", req.getParameter("idSpot"));
+			
+			String idSpot = req.getParameter("idSpot");
+			
+			req.getSession().setAttribute("idSpot", idSpot);
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
 			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
 			//rd.forward(req, resp);

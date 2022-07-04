@@ -9,9 +9,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="lib/gson-2.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/org.junit.jupiter.api_5.7.1.v20210222-1948.jar"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-4.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

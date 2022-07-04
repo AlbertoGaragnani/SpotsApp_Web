@@ -5,49 +5,34 @@
 
 <html>
    <head>
-    <!--    <meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>   -->
       <title>AggiungiSpot</title>
-        <link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
-        <script type="text/javascript" src="scripts/VisualizzaSpot.js"></script>
-        <script type="text/javascript" src="scripts/AggiungiSpot.js"></script>
-        <script type="text/javascript" src="scripts/utils.js"></script>
+      <link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
    </head>
    <body>
            <h1>AggiungiSpot</h1>
            <div>
                <p>Inserisci i dati dello Spot</p>
-               <form action="aggiungiSpot" method="post">
+               <form action="/SpotsApp/aggiungiSpot" method="post" enctype="multipart/form-data">
                    <label>Nome <input type="text" name="nomeSpot"/></label><br>
                    <label>Indirizzo <input type="text" name="indirizzoSpot"/></label><br>
-                   <select name="activities" multiple=“multiple”>
-                   <%
-                   Attivita[] activities = Attivita.values();
-                   for(Attivita a : activities)
-                   {
-                   %>
-                   <option value="<%=a.toString()%>"> <%=a.toString()%> </option> 
-                   <%
-                   }
-                   %>
-                   </select>
-                   
-                   <%
-                   for(int i=0;i<5;i++)
-                   {
-                   %>
-                   <input type="text" value="file<%=i%>"> Carica foto n.<%=i%>
-                   <%
-                   }
-                   %>
-                   
-                   
-                   
+                   <label>Attivit�
+	                   <select name="activities" multiple="multiple">
+	                   <%
+	                   Attivita[] activities = Attivita.values();
+	                   for(Attivita a : activities)
+	                   {
+	                   %>
+	                   		<option value="<%=a.toString()%>"> <%=a.toString()%> </option> 
+	                   <%
+	                   }
+	                   %>
+	                   </select>
+                   </label><br>
+
+                   <label>Carica foto <input type="file" name="file" value="image"/></label><br>
+                   <input type="submit" value="Conferma" ><br>
+                 
          </form>
-
-        <div>
-           <input type="submit" value="AggiungiSpotController" ><br>
-           </div>
-
      </div>
    </body>
 </html>
