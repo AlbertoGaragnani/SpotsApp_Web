@@ -51,6 +51,8 @@ public class GestioneUtenteController extends HttpServlet{
 			{
 				//Parametri inseriti non validi, solo tabulazioni o spazi
 				req.getSession().setAttribute("Errore", "I due parametri passati sono vuoti");
+				resp.sendRedirect("view/ViewGestioneUtente.jsp");
+
 			}
 			else
 			{
