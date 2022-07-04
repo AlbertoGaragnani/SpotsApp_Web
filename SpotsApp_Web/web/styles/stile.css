@@ -1,11 +1,18 @@
 
+* {
+  box-sizing: border-box;
+}
 
+img {
+  vertical-align: middle;
+}
 
 body {
  font-family: Verdana, Helvetica, sans-serif;
  font-size: 25pt;
  background: white ; 
  color: #0bbaf4;
+ margin:0;
 }
 
 input[type=text], input[type=password]{
@@ -55,10 +62,14 @@ input[type=button], input[type=submit], input[type=reset] {
 
 /* Hide the images by default */
 .mySlides {
+	position: relative;
   display: none;
+  color: black;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-/* Next & previous buttons */
+/* Next and previous buttons */
 .prev,
 .next {
   cursor: pointer;
@@ -67,7 +78,7 @@ input[type=button], input[type=submit], input[type=reset] {
   width: auto;
   padding: 16px;
   margin-top: -50px;
-  color: white;
+  color: #0bbaf4;
   font-weight: bold;
   font-size: 20px;
   border-radius: 0 3px 3px 0;
@@ -96,7 +107,10 @@ input[type=button], input[type=submit], input[type=reset] {
   top: 0;
 }
 
+
 .spotListImg{
 	width: 300px;
     height: 200px;
 }
+
+

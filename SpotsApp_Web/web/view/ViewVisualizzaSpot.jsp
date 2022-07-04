@@ -4,7 +4,6 @@
 <%@ page import="model.Attivita" %>
 <%@ page import="model.Spot" %>
 <%@ page import="model.Recensione" %>
-<%@ page import="mockDatabase.SpotsDB" %>
 <%@ page import="java.io.*" %>
 <%@ page import="mockDatabase.MockDB" %>
 
@@ -14,13 +13,13 @@
 	
 
       <title></title>
-		<link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
-		<script type="text/javascript" src="scripts/VisualizzaSpot.js"></script>
-		<script type="text/javascript" src="scripts/utils.js"></script>
+		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
+		<script type="text/javascript" src="/SpotsApp/scripts/visualizzaspot.js"></script>
    </head>
-   <body>
+   <body onload="showSlides(1)">
    	<%
-		String idSpot = request.getParameter("idSpot");
+		String idSpot = (String) session.getAttribute("idSpot");
+   	System.out.println(idSpot);
 		String nome="";String indirizzo="";
 		int presenzeSegnalate;
 		List<Recensione> recensioni = new ArrayList<>();
@@ -48,10 +47,12 @@
 	   		<%
 	   		for(int i =0;i<immagini.size();i++ )
 	   		{
+	   			System.out.println(immagini.get(i).getPath());
+	   			System.out.println(immagini.get(i).getPath().replace('\\', '/'));
 	   			%>
 	   			<div class="mySlides">
-				    <div class="numbertext"><%= i %> / <%= immagini.size() %></div>
-				      <img src=<%= immagini.get(i).getPath()  %> style="width:100%">
+				    <div class="numbertext"><%= i+1 %> / <%= immagini.size() %></div>
+				      <img src=<%= immagini.get(i).getPath().replace('\\', '/')  %> />
 				</div>
 	   			
 	   			<%
@@ -62,13 +63,16 @@
  			<a class="next" onclick="plusSlides(1)">&#10095;</a>
 	   		
     	</div>
-     
+    	
+    	<div>
+		 	<form action="/SpotsApp/gestioneUtente" method="get">
+		     	<input type="submit" name="logout" value="Logout" >
+			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
+			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
+		 	</form>
+	     </div>
+    
    
-     
-     <div>
-   		<input type="button" value="Visualizza Profilo"><br>
-   		<input type="button" value="Logout"><br>
-   		<input type="button" value="Aggiungi Spot"><br>
-   </div>
+    
    </body>
 </html>
