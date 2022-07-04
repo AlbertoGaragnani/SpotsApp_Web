@@ -7,16 +7,21 @@
    <head>
 	<!--	<meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>   -->
       <title>GestioneUtente</title>
-		<link type="text/css" href="styles/stile.css" rel="stylesheet"></link>
+		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
 		<script type="text/javascript" src="scripts/GestioneUtente.js"></script>
 		<script type="text/javascript" src="scripts/utils.js"></script>
    </head>
    <body>
-   		<h1>Home Utente</h1>
+   
+   	<% if(session.getAttribute("currentUser")!=null)
+   	{
+	%>
+		
+		<h1>Home Utente</h1>
    		<div>
 	   		<h2>Cerca Spot</h2>
 	   		<p>Inserisci i criteri di ricerca dello Spot</p>
-	   		<form action="gestioneUtente" method="post">
+	   		<form action="/SpotsApp/gestioneUtente" method="post">
 	   			<label>Indirizzo <input type="text" name="indirizzo" size="30"/></label><br>
 	      		<label>Attivita 
 	      		<select name="attivita">
@@ -31,42 +36,59 @@
 	      			%>
 	      		</select>
 	      		</label><br>
-	      		<input type="submit" value="CercaSpot"/>
-	     </form>
-     </div>
+	      		<input type="submit" name="cercaspot" value="CercaSpot"/>
+	      		
+	     	</form>
+    	</div>
      
-     <%
-     if(session.getAttribute("listaSpot") != null)
-     {
-    	 %>
-    	 <div>
-    	 	<ol>
-    	 	<%
-    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
-    	 	for(Spot s : listaSpot)
-    	 	{
-    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
-    	 		%>
-    	 		<li>
-    	 			<p><%= s.getNome() %></p>
-    	 			<p><%= s.getIndirizzo() %></p>
-    	 			<img src=<%= img %>/>
-    	 			<input type="button" id=<%= s.getId() %> value="Visualizza" onClick="visualizzaSpot(this)">
-    	 		</li>
-    	 		<%
-    	 	}
-    	 	%>
-    	 	</ol>
-    	 </div>
-    	 <%
-     }
-     %>
-     
-     <div>
-   		<input type="button" value="Visualizza_Profilo" onClick="visualizzaProfilo(this)"><br>
-   		<input type="button" value="Logout" onClick="logout(this)"><br>
-   		<input type="button" value="Aggiungi_Spot" onClick="aggiungiSpot(this)"><br>
-   </div>
+	     <%
+	     if(session.getAttribute("listaSpot") != null)
+	     {
+	    	 %>
+	    	 <div>
+		    	 <form action="/SpotsApp/gestioneUtente" method="post">
+		    	 	<ol>
+		    	 	<%
+		    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
+		    	 	for(Spot s : listaSpot)
+		    	 	{
+		    	 		
+		    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
+		    	 		%>
+		    	 		<li>
+		    	 			<p><%= s.getNome() %></p>
+		    	 			<p><%= s.getIndirizzo() %></p>
+		    	 			<img class="spotListImg" src=<%= img %> align="left" />
+		    	 			<input type="submit" name=<%= s.getId() %> value="visualizzaspot" >
+		    	 		</li>
+		    	 		<%
+		    	 	}
+		    	 	%>
+		    	 	</ol>
+		    	 </form>
+	    	 </div>
+	    	 <%
+	     }
+	     %>
+	     
+	     <div>
+		 	<form action="/SpotsApp/gestioneUtente" method="get">
+		     	<input type="submit" name="logout" value="Logout" >
+			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
+			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
+		 	</form>
+	     </div>
+	     
+    
+	
+	
+	<%
+   	} 
+   	else{
+   		%><h1>SESSIONE NON VALIDA</h1> <%
+   	}
+	%>
+   	
    </body>
 </html>
 

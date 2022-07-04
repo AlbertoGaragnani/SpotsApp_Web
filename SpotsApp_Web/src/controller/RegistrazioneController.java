@@ -17,38 +17,20 @@ import model.Utente;
 public class RegistrazioneController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	
-	private UsersDB databaseUtenti;
-	private ModeratoriDB databaseModeratori;
-	private AdminDB databaseAdmin;
+
+	private MockDB db;
 	
 	public void init(ServletConfig conf) throws ServletException 
 	{
 		super.init(conf);
-		if(this.getServletContext().getAttribute("UsersDB") == null) {
-			databaseUtenti = new UsersDB();
-			this.getServletContext().setAttribute("UsersDB", databaseUtenti);
-		}
-		else
-			databaseUtenti = (UsersDB) this.getServletContext().getAttribute("UsersDB");
-		if(this.getServletContext().getAttribute("ModeratoriDB") == null) {
-			databaseModeratori = new ModeratoriDB();
-			this.getServletContext().setAttribute("ModeratoriDB", databaseModeratori);
-		}
-		else
-			databaseModeratori = (ModeratoriDB) this.getServletContext().getAttribute("ModeratoriDB");
-		if(this.getServletContext().getAttribute("AdminDB") == null) {
-			databaseAdmin = new AdminDB();
-			this.getServletContext().setAttribute("AdminDB", databaseAdmin);
-		}
-		else
-			databaseAdmin = (AdminDB) this.getServletContext().getAttribute("AdminDB");
+		
+		db = MockDB.getInstance();
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String username, password, email, pwdConfirm;
-		username = (String) req.getParameter("userName");
+		username = (String) req.getParameter("Username");
 		password = (String) req.getParameter("pwd");
 		email = (String) req.getParameter("email");
 		pwdConfirm = (String) req.getParameter("pwdconfirm");
@@ -97,30 +79,29 @@ public class RegistrazioneController extends HttpServlet{
 		boolean giaPresente = false;
 		utente.setUsername(username);
 		utente.setEmail(email);
-		for(Utente u : this.databaseUtenti.getUtenti()) {
+		for(Utente u : this.db.getUtenti()) {
 			if(u.getUsername().equals(username))
 				giaPresente = true;
 		}
-		for(Moderatore m : this.databaseModeratori.getModeratori()) {
+		for(Moderatore m : this.db.getModeratori()) {
 			if(m.getUsername().equals(username))
 				giaPresente = true;
 		}
-		for(Admin a : this.databaseAdmin.getAdmin()) {
+		for(Admin a : this.db.getAdmin()) {
 			if(a.getUsername().equals(username))
 				giaPresente = true;
 		}
 		if(!giaPresente)
-		{
-			//Aggiungo l'utente e rimando alla pagina principale
-			this.databaseUtenti.getUtenti().add(utente);
-			this.databaseUtenti.getPassword().put(utente, password);
-			this.getServletContext().setAttribute("UsersDB", databaseUtenti);
-			req.getSession().setAttribute("RegistrazioneOK", username);
-			//Forward alla pagina di login
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");
-			rd.forward(req, resp);
-			return;
-		}
+        {
+            //Aggiungo l'utente e rimando alla pagina principale
+            this.db.getUtenti().add(utente);
+            this.db.getPassword().put(utente, password);
+            req.getSession().setAttribute("RegistrazioneOK", username);
+            //Forward alla pagina di login
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");
+            rd.forward(req, resp);
+            return;
+        }
 		else
 		{
 			//Messaggio di errore, l'utente è già presente

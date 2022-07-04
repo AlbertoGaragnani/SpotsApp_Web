@@ -30,7 +30,7 @@ class TestSpot {
 		utente = new Utente("AlessandroPajola", "alessandropajola@gmail.com");
 		immagini[0] = new File("C:/Users/Utente/Desktop/foto1.jpeg");
 		immagini[1] = new File("C:/Users/Utente/Desktop/foto2.jpeg");
-		spot = new Spot("SP001", utente.getUsername(), "Skate Big Ramp", "Viale della Pace 333", immagini, attivita, null, recensioni);
+		//spot = new Spot("SP001", utente.getUsername(), "Skate Big Ramp", "Viale della Pace 333", immagini, attivita, null, recensioni);
 	}
 	
 	@Test

@@ -15,31 +15,13 @@ import model.*;
 public class LoginController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	private AdminDB databaseAdmin;
-	private ModeratoriDB databaseModeratori;
-	private UsersDB databaseUtenti;
+	private MockDB db;
 	
 	
 	public void init(ServletConfig conf) throws ServletException {
 		super.init(conf);
-		if(this.getServletContext().getAttribute("UsersDB") == null) {
-			databaseUtenti = new UsersDB();
-			this.getServletContext().setAttribute("UsersDB", databaseUtenti);
-		}
-		else
-			databaseUtenti = (UsersDB) this.getServletContext().getAttribute("UsersDB");
-		if(this.getServletContext().getAttribute("ModeratoriDB") == null) {
-			databaseModeratori = new ModeratoriDB();
-			this.getServletContext().setAttribute("ModeratoriDB", databaseModeratori);
-		}
-		else
-			databaseModeratori = (ModeratoriDB) this.getServletContext().getAttribute("ModeratoriDB");
-		if(this.getServletContext().getAttribute("AdminDB") == null) {
-			databaseAdmin = new AdminDB();
-			this.getServletContext().setAttribute("AdminDB", databaseAdmin);
-		}
-		else
-			databaseAdmin = (AdminDB) this.getServletContext().getAttribute("AdminDB");
+		
+		db = MockDB.getInstance();
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -49,9 +31,9 @@ public class LoginController extends HttpServlet{
 		String password = null;
 		Utente utente = new Utente();
 		//Ciclo sui DBMock per trovare l'utente associato all'username inserito
-		for(Admin user : this.databaseAdmin.getAdmin()) {
+		for(Admin user : this.db.getAdmin()) {
 			if(user.getUsername().equals(username)) {
-				password = this.databaseAdmin.getPassword().get(user);
+				password = this.db.getPassword().get(user);
 				req.getSession().setAttribute("tipoUtente", "Admin");
 				utente = user;
 			}
@@ -59,9 +41,9 @@ public class LoginController extends HttpServlet{
 		
 		if(password == null)
 		{
-			for(Moderatore user : this.databaseModeratori.getModeratori()) {
+			for(Moderatore user : this.db.getModeratori()) {
 				if(user.getUsername().equals(username)) {
-					password = this.databaseModeratori.getPassword().get(user);
+					password = this.db.getPassword().get(user);
 					req.getSession().setAttribute("tipoUtente", "Moderatore");
 					utente = user;
 				}
@@ -70,9 +52,9 @@ public class LoginController extends HttpServlet{
 		
 		if(password == null)
 		{
-			for(Utente user : this.databaseUtenti.getUtenti()) {
+			for(Utente user : this.db.getUtenti()) {
 				if(user.getUsername().equals(username)) {
-					password = this.databaseUtenti.getPassword().get(user);
+					password = this.db.getPassword().get(user);
 					req.getSession().setAttribute("tipoUtente", "Utente");
 					utente = user;
 				}
@@ -83,23 +65,21 @@ public class LoginController extends HttpServlet{
 		{
 			//Controllo se la password è stata inserita correttamente e nel caso vado a Gestione Utente
 			if(passwordToCheck.equals(password)) {
+				
 				req.getSession().setAttribute("currentUser", utente);
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewGestioneUtente.jsp");	
-				rd.forward(req, resp);
+				resp.sendRedirect("/SpotsApp/view/ViewGestioneUtente.jsp");
 			}
 			//La password è errata
 			else {
 				req.getSession().setAttribute("Errore", "Errore");
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");	
-				rd.forward(req, resp);
+				resp.sendRedirect("/SpotsApp/view/ViewLogin.jsp");
 			}
 		}
 		//Non è stato trovato nessun utente con l'username inserito nel database
 		else
 		{
 			req.getSession().setAttribute("Errore", "Errore");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewLogin.jsp");	
-			rd.forward(req, resp);
+			resp.sendRedirect("/SpotsApp/view/ViewLogin.jsp");
 		}
 	}
 

@@ -6,9 +6,9 @@ function myGetElementById(idElemento) {
 	// elemento da restituire
 	var elemento;
 
-	// se esiste il metodo getElementById questo if sara'  
+	// se esiste il metodo getElementById questo if sara'ï¿½ 
 	// diverso da false, null o undefined
-	// e sara'  quindi considerato valido, come un true
+	// e sara'ï¿½ quindi considerato valido, come un true
 	if ( document.getElementById )
 		elemento = document.getElementById(idElemento);
 
@@ -32,7 +32,7 @@ function myGetXmlHttpRequest() {
 	var 
 		// risultato 
 		xhr = false,
-		// opzioni activeX dal più nuovo al più vecchio
+		// opzioni activeX dal piï¿½ nuovo al piï¿½ vecchio
 		activeXoptions = new Array( "Microsoft.XmlHttp", "MSXML4.XmlHttp", "MSXML3.XmlHttp", "MSXML2.XmlHttp", "MSXML.XmlHttp" );
 
 	// primo tentativo come oggetto nativo
@@ -131,3 +131,27 @@ function myGetChildByName( theElement, name ) {
 	}
 
 }// myGetChildByName()
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
