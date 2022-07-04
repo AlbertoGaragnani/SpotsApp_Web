@@ -46,7 +46,7 @@
 	     {
 	    	 %>
 	    	 <div>
-		    	 <form action="/SpotsApp/gestioneUtente" method="post">
+		    	 <form action="/SpotsApp/gestioneUtente" method="get">
 		    	 	<ol>
 		    	 	<%
 		    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
@@ -59,7 +59,8 @@
 		    	 			<p><%= s.getNome() %></p>
 		    	 			<p><%= s.getIndirizzo() %></p>
 		    	 			<img class="spotListImg" src=<%= img %> align="left" />
-		    	 			<input type="submit" name=<%= s.getId() %> value="visualizzaspot" >
+		    	 			<input hidden="true" name="idSpot" value=<%= s.getId() %> />
+		    	 			<input type="submit"  name="visualizzaspot" value="Visualizza Spot" />
 		    	 		</li>
 		    	 		<%
 		    	 	}

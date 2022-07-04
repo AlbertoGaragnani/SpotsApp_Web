@@ -2,7 +2,7 @@
 
 let slideIndex = 1;
 
-window.onload = showSlides(slideIndex);
+showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
