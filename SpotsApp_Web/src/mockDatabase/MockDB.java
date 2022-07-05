@@ -106,7 +106,7 @@ public class MockDB {
 		sp.setAttivita(Attivita.BASKETBALL);
 		//sp.setAttivita(Attivita.CLIFFDIVING);
 		//Settare le immagini
-		sp.setImmagini(new File("/SpotsApp/images/unipolArena1.jpg"));
+		sp.setImmagini(new File("/SpotsApp/images/unipolArena1.png"));
 		sp.setPresenzeSegnalate(0);
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
@@ -119,7 +119,7 @@ public class MockDB {
 		sp.setNome("Paladozza");
 		sp.setAttivita(Attivita.BASKETBALL);
 		//Settare le immagini
-		sp.setImmagini(new File("/SpotsApp/images/paladozza.jpg"));
+		sp.setImmagini(new File("/SpotsApp/images/paladozza.png"));
 		sp.setPresenzeSegnalate(100);
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
