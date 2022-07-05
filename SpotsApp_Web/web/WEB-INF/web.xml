@@ -55,16 +55,21 @@
             <max-request-size>104857600</max-request-size>
             <file-size-threshold>1048576</file-size-threshold>
         </multipart-config>
-        <init-param>
-        	<param-name>contextConfigLocation</param-name>
-        	<param-value>/WEB-INF/appname.xml</param-value>
-    	</init-param>
-    	<load-on-startup>1</load-on-startup>
     </servlet>
     
     <servlet-mapping>
         <servlet-name>AggiungiSpotController</servlet-name>
         <url-pattern>/aggiungiSpot</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>VisualizzaProfiloController</servlet-name>
+        <servlet-class>controller.VisualizzaProfiloController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>VisualizzaProfiloController</servlet-name>
+        <url-pattern>/visualizzaProfilo</url-pattern>
     </servlet-mapping>
 	<!-- Welcome pages -->
 	<!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
