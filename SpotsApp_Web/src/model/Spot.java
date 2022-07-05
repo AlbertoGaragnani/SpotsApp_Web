@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Spot implements Serializable{
 
@@ -150,8 +151,24 @@ public class Spot implements Serializable{
 	public void setRecensioni(List<Recensione> recensioni) {
 		this.recensioni = recensioni;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(indirizzo, nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Spot other = (Spot) obj;
+		return Objects.equals(indirizzo, other.indirizzo) && Objects.equals(nome, other.nome);
+	}
 	
-	
-	
+		
 	
 }
