@@ -15,17 +15,21 @@ public class Spot implements Serializable{
 	private String usernameUtente;
 	private String nome;
 	private String indirizzo;
+	private String descrizione;
 	private List<File> immagini;
 	private int presenzeSegnalate;
 	private List<Attivita> attivita;
 	private Map<String, Double> affluenza;
 	private List<Recensione> recensioni;
+	private List<SegnalazioneSpot> segnalazioni;
 	
 	public Spot() {
 		this.immagini = new ArrayList<>();
 		this.attivita = new ArrayList<>();
 		this.affluenza = new HashMap<>();
 		this.recensioni = new ArrayList<>();
+		this.segnalazioni = new ArrayList<>();
+		this.descrizione= "";
 	}
 
 	public Spot(String id, String usernameUtente, String nome, String indirizzo, List<File> immagini,
@@ -40,6 +44,24 @@ public class Spot implements Serializable{
 		this.attivita = attivita;
 		this.affluenza = affluenza;
 		this.recensioni = recensioni;
+	}
+	
+	
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+	public List<SegnalazioneSpot> getSegnalazioni() {
+		return segnalazioni;
+	}
+
+	public void setSegnalazioni(List<SegnalazioneSpot> segnalazioni) {
+		this.segnalazioni = segnalazioni;
 	}
 
 	public String getId() {
