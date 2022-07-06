@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,11 +30,6 @@ public class VisualizzaProfiloController extends HttpServlet{
 		if(req.getParameter("cambiaPW") != null)
 		{
 			//Logica per cambaire pw
-		}
-		else if(req.getParameter("preferiti") != null)
-		{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewIMieiPreferiti.jsp");
-			rd.forward(req, resp);
 		}
 		else if(req.getParameter("inserzioni") != null)
 		{
