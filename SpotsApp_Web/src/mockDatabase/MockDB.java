@@ -21,6 +21,7 @@ public class MockDB {
 	private List<Admin> admin;
 	private Map<Utente, String> password;
 	private List<Spot> spots;
+	private Map<String, List<Spot>> preferiti;
 	
 	private MockDB() {
 		utenti = new ArrayList<>();
@@ -28,6 +29,7 @@ public class MockDB {
 		admin = new ArrayList<>();
 		password = new HashMap<>();
 		spots = new ArrayList<>();
+		preferiti = new HashMap<>();
 		init();
 	}
 	
@@ -97,6 +99,7 @@ public class MockDB {
 		//Creazione spot
 		Map<String,Double> mappa = new HashMap<>();
 		List<Recensione> lista = new ArrayList<>();
+		List<Spot> spotPreferiti = new ArrayList<>();
 		Spot sp = new Spot();
 		sp.setId("SP0001");
 		sp.setUsernameUtente(u5.getUsername());
@@ -127,6 +130,7 @@ public class MockDB {
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
 		this.spots.add(sp);
+		spotPreferiti.add(sp);
 		
 		sp = new Spot();
 		sp.setId("SP0003");
@@ -140,6 +144,7 @@ public class MockDB {
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
 		this.spots.add(sp);
+		spotPreferiti.add(sp);
 		
 		sp = new Spot();
 		sp.setId("SP0004");
@@ -152,6 +157,9 @@ public class MockDB {
 		sp.setAffluenza(mappa);
 		sp.setRecensioni(lista);
 		this.spots.add(sp);
+		
+		//Creazione preferiti
+		this.preferiti.put(u2.getUsername(), spotPreferiti);
 	}
 
 	public List<Utente> getUtenti() {
@@ -193,6 +201,16 @@ public class MockDB {
 	public void setSpots(List<Spot> spots) {
 		this.spots = spots;
 	}
+
+	public Map<String, List<Spot>> getPreferiti() {
+		return preferiti;
+	}
+
+	public void setPreferiti(Map<String, List<Spot>> preferiti) {
+		this.preferiti = preferiti;
+	}
 	
-	
+	public void setPreferiti(String username, Spot spot) {
+		this.preferiti.get(username).add(spot);
+	}
 }
