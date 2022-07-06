@@ -40,7 +40,7 @@ label{
     padding: 50 px;
 }
  
-input[type=button], input[type=submit], input[type=reset] {
+input[type=button], input[type=submit], input[type=reset], button {
   background-color: #d8d8d8;
   border: 1px solid black;
   color: black;

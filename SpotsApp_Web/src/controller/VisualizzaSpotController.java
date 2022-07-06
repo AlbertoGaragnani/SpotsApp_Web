@@ -75,7 +75,7 @@ public class VisualizzaSpotController extends HttpServlet{
 	
 		if(req.getParameter("segnalapresenza") != null)
 		{
-			String idSpot = req.getParameter("idSpot");
+			String idSpot = (String) req.getSession().getAttribute("idSpot");
 			for(Spot s: this.db.getSpots())
 			{
 				if(idSpot.equals(s.getId()))
