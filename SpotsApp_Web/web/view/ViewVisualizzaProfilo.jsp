@@ -42,8 +42,7 @@
 		    	 			<p><%= s.getNome() %></p>
 		    	 			<p><%= s.getIndirizzo() %></p>
 		    	 			<img class="spotListImg" src=<%= img %> align="left" />
-		    	 			<input hidden="true" name="idSpot" value=<%= s.getId() %> />
-		    	 			<input type="submit"  name="visualizzaspot" value="Visualizza Spot" />
+		    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
 		    	 		</li>
 		    	 		<%
 	    			}
