@@ -71,6 +71,16 @@
         <servlet-name>VisualizzaProfiloController</servlet-name>
         <url-pattern>/visualizzaProfilo</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>VisualizzaSpotController</servlet-name>
+        <servlet-class>controller.VisualizzaSpotController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>VisualizzaSpotController</servlet-name>
+        <url-pattern>/visualizzaSpot</url-pattern>
+    </servlet-mapping>
 	<!-- Welcome pages -->
 	<!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
 	

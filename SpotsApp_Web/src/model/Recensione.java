@@ -8,19 +8,19 @@ public class Recensione {
 	
 	private String id;
 	private int valutazione;
-	private Optional<String> titolo;
-	private Optional<String> descrizione;
-	private Optional<List<Permanenza>> permanenza;
+	private String titolo;
+	private String descrizione;
+	private List<Permanenza> permanenza;
 	
 	public Recensione() {
 		List<Permanenza> perm = new ArrayList<>();
-		this.permanenza = Optional.of(perm);
-		this.titolo= Optional.of("");
-		this.descrizione = Optional.of("");
+		this.permanenza = perm;
+		this.titolo= "";
+		this.descrizione = "";
 	}
 	
-	public Recensione(String id, int valutazione, Optional<String> titolo, Optional<String> descrizione,
-			Optional<List<Permanenza>> permanenza) {
+	public Recensione(String id, int valutazione, String titolo, String descrizione,
+			List<Permanenza> permanenza) {
 		this.id = id;
 		this.valutazione = valutazione;
 		this.titolo = titolo;
@@ -44,28 +44,28 @@ public class Recensione {
 		this.valutazione = valutazione;
 	}
 	
-	public Optional<String> getTitolo() {
+	public String getTitolo() {
 		return titolo;
 	}
 	
 	public void setTitolo(String titolo) {
-		this.titolo = Optional.of(titolo);
+		this.titolo = titolo;
 	}
 	
-	public Optional<String> getDescrizione() {
+	public String getDescrizione() {
 		return descrizione;
 	}
 	
 	public void setDescrizione(String descrizione) {
-		this.descrizione = Optional.of(descrizione);
+		this.descrizione = descrizione;
 	}
 	
-	public Optional<List<Permanenza>> getPermanenza() {
+	public List<Permanenza> getPermanenza() {
 		return permanenza;
 	}
 	
 	public void setPermanenza(List<Permanenza> permanenza) {
-		this.permanenza = Optional.of(permanenza);
+		this.permanenza = permanenza;
 	}
 	
 	

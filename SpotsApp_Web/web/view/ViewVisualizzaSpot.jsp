@@ -94,11 +94,12 @@
 	    		</div>
 	    		
 	    		<div class ="bottoni">
-	    			<form action="/SpotsApp/gestioneUtente" method="get">
+	    			<form action="/SpotsApp/visualizzaSpot" method="get">
 				     	<input type="submit" name="segnalapresenza" value="Segnala presenza" >
 					    <input type="submit" name="lasciarecensione" value="Lascia Recensione" >
 					  	<input type="submit" name="segnalaspot" value="Segnala Spot" >
-					  	<input type="submit" name="backHome" value="Home" >
+					  	<input type="submit" name="aggiungipreferiti" value="&#128150;" >
+					  	<input type="submit" name="backhome" id="home" value="Home" >
 				 	</form>
 	    		
 	    		</div>
@@ -108,24 +109,32 @@
     	</div>
     	
     	<div class="recensioni">
-    			<form action="/SpotsApp/gestioneUtente" method="get">
+    			<form action="/SpotsApp/visualizzaSpot" method="get">
 		    	 	<ol>
-		    	 	<%
-		    	 	for(Recensione r : recensioni)
-		    	 	{
-		    	 		
-		    	 		
-		    	 		%>
-		    	 		<li>
-		    	 			<span><%= r.getValutazione() %></span><br>
-		    	 			<span><%= r.getTitolo() %></span><br>
-		    	 			<span><%= r.getDescrizione() %></span><br>
-		    	 			<input hidden="true" name="idRecensione" value=<%= r.getId() %> />
-		    	 			<input type="submit"  name="segnalarecensione" value="Segnala" />
-		    	 		</li>
-		    	 		<%
-		    	 	}
-		    	 	%>
+			    	 	<%
+			    	 	for(Recensione r : recensioni)
+			    	 	{
+			    	 		
+			    	 		
+			    	 		%>
+			    	 		<li>
+			    	 			<div style="padding:20px">
+				    	 			<% for(int i=0;i<r.getValutazione();i++)
+				    	 				{
+				    	 					%> 
+				    	 						<span>&#11088;</span>
+				    	 					<%
+				    	 				}
+				    	 				%><br>
+				    	 			<h3><%= r.getTitolo() %></h3>
+				    	 			<div id="descrizionne"><%= r.getDescrizione() %></div>
+				    	 			<input hidden="true" name="idRecensione" value=<%= r.getId() %> />
+				    	 			<input type="submit"  name="segnalarecensione" value="Segnala" />
+				    	 		</div>
+			    	 		</li>
+			    	 		<%
+			    	 	}
+			    	 	%>
 		    	 	</ol>
 	   			</form>
     	

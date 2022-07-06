@@ -52,15 +52,15 @@
 		    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
 		    	 	for(Spot s : listaSpot)
 		    	 	{
-		    	 		
+		    	 		System.out.println(s.getId());
 		    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
 		    	 		%>
 		    	 		<li>
 		    	 			<p><%= s.getNome() %></p>
 		    	 			<p><%= s.getIndirizzo() %></p>
 		    	 			<img class="spotListImg" src=<%= img %> align="left" />
-		    	 			<input hidden="true" name="idSpot" value=<%= s.getId() %> />
-		    	 			<input type="submit"  name="visualizzaspot" value="Visualizza Spot" />
+		    	 			<input hidden="true" name="idSpot"  />
+		    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
 		    	 		</li>
 		    	 		<%
 		    	 	}

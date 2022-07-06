@@ -93,8 +93,8 @@ public class GestioneUtenteController extends HttpServlet{
 		}
 		else if(req.getParameter("visualizzaspot") != null)
 		{			
-			String idSpot = req.getParameter("idSpot");
-			
+			String idSpot = req.getParameter("visualizzaspot");
+			System.out.println("idSpot in sessione: " + idSpot);
 			req.getSession().setAttribute("idSpot", idSpot);
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
 			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");

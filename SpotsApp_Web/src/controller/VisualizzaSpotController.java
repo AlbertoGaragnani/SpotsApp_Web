@@ -87,6 +87,7 @@ public class VisualizzaSpotController extends HttpServlet{
 		}
 		else if(req.getParameter("backhome") != null)
 		{
+			req.getSession().removeAttribute("idSpot");
 			resp.sendRedirect("view/ViewGestioneUtente.jsp");
 		}
 		else if(req.getParameter("lasciarecensione") != null)
@@ -96,7 +97,11 @@ public class VisualizzaSpotController extends HttpServlet{
 		else if(req.getParameter("segnalaspot") != null)
 		{			
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
-		}	
+		}
+		else if(req.getParameter("aggiungipreferiti") != null)
+		{			
+			
+		}
 	}
 	
 	private List<Spot> ricercaSpot(String indirizzo, String attivita)
