@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="/SpotsApp/scripts/visualizzaspot.js"></script>
 			<%
 		String idSpot = (String) session.getAttribute("idSpot");
-   	System.out.println(idSpot);
+   		System.out.println(idSpot);
 		String nome="";String indirizzo="";String descrizione="";
 		double punteggio=0;
 		
