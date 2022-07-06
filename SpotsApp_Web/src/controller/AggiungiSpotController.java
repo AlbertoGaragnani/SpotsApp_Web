@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,11 +21,6 @@ import model.Recensione;
 import model.Spot;
 import model.Utente;
 
-@MultipartConfig(
-	fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
-	maxFileSize = 1024 * 1024 * 10,      // 10 MB
-	maxRequestSize = 1024 * 1024 * 100   // 100 MB
-)
 public class AggiungiSpotController extends HttpServlet{
  
 	 private static final long serialVersionUID = 1L;
@@ -47,18 +41,30 @@ public class AggiungiSpotController extends HttpServlet{
 		 String nomeSpot = req.getParameter("nomeSpot");
 		 String indirizzoSpot = req.getParameter("indirizzoSpot");
 		 String[] activities = req.getParameterValues("activities");
+		 String descrizione = req.getParameter("descrizione");
 		 List<Attivita> listaAttivita = new ArrayList<>();
-		 for(String s : activities)
-			 listaAttivita.add(Attivita.valueOf(s));
-		 Part filePart = req.getPart("file");
-		 String fileName = filePart.getSubmittedFileName();
-		 for(Part part : req.getParts()) {
-			 part.write("C:\\Users\\Utente\\git\\SpotsApp_Web\\SpotsApp_Web\\web\\images\\" + fileName);
+		 if(activities != null) {
+			 for(String s : activities)
+				 listaAttivita.add(Attivita.valueOf(s));
 		 }
-		 if(nomeSpot.isBlank() || indirizzoSpot.isBlank() || listaAttivita.isEmpty())
+		 List<String> fileNames = new ArrayList<>();
+		 
+		 //Upload immagini
+		 String fName;
+		 List<Part> fileParts = req.getParts().stream().filter(part -> "file".equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
+		 for(Part filePart : fileParts) {
+			 fName = filePart.getSubmittedFileName();
+			 this.getServletContext();
+			 String imagesDir = System.getProperty("catalina.base") + "\\webapps\\SpotsApp\\images\\";
+			 fileNames.add(fName);
+			 filePart.write(imagesDir + fName);
+		 }
+		 
+		 if(nomeSpot.isBlank() || indirizzoSpot.isBlank() || listaAttivita.isEmpty() || fileParts.isEmpty())
 		 {
 			 //Parametri inseriti non validi, solo tabulazioni o spazi
 			 req.getSession().setAttribute("Errore", "ErroreForm");
+			 resp.sendRedirect("view/ViewAggiungiSpot.jsp");
 		 }
 		 else
 		 {
@@ -73,53 +79,72 @@ public class AggiungiSpotController extends HttpServlet{
 		     //Settaggio attività
 		     spot.setAttivita(listaAttivita);
 		     
+		     //Settaggio descrizione
+		     spot.setDescrizione(descrizione);
+		     
 		     //Settaggio usernameUtente
 		     Utente utente = (Utente) req.getSession().getAttribute("currentUser");
 		     spot.setUsernameUtente(utente.getUsername());
 		   
-		     //Controllo che lo spot non sia gia presente
-		     for(Spot sp : this.db.getSpots())
-		     if(sp.getNome().equals(nomeSpot))
-		    	 req.getSession().setAttribute("Errore", "ErroreSpot");
-		   
-		     //Creazione dell'ID
-		     /*String precedentStr = "";
-		     for(Spot s : this.db.getSpots())
-		    	 precedentStr = s.getId();
-		     System.out.println("Id ultimo spot: "+precedentStr);
-		     precedentStr = precedentStr.substring(precedentStr.length()-2,precedentStr.length());
-		     int precedent = 0;
-		     try
-		     {
-		    	 precedent = Integer.parseInt(precedentStr);
-		    	 System.out.println("Numero parsato"+precedent);
-		     }
-		     catch(NumberFormatException e)
-		     {
-		    	 e.printStackTrace();
-		     }
-		     spot.setId(findId(precedentStr,precedent));
-		     System.out.println("L'id dello spot che si sta cercando di caricare e: "+spot.getId());*/
-		     spot.setId("SP0005");
+		     //Settaggio ID
+		     String newId = newId();
+		     spot.setId(newId);
 		   
 		     //Settaggio IMMAGINI
-		     spot.setImmagini(new File("/SpotsApp/images/" + fileName));		   
-		     this.db.getSpots().add(spot);
+		     for(String fileName : fileNames) {
+		    	 spot.setImmagini(new File("/SpotsApp/images/" + fileName));		   
+		     }
 		     
 		     //Settaggio valori di default
 		     spot.setPresenzeSegnalate(0);
 			 spot.setAffluenza(mappa);
 			 spot.setRecensioni(lista);
-		   
-		     //Redirezione alla home page
-			 RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewGestioneUtente.jsp");
-		     rd.forward(req, resp); 
+			 
+			//Controllo che lo spot non sia gia presente
+			 boolean giaPresente = false;
+		     for(Spot sp : this.db.getSpots()) {
+			     if(sp.equals(spot))
+			    	 giaPresente = true;
+		     }
+		     
+		     if(giaPresente)
+		     {
+		    	req.getSession().setAttribute("Errore", "ErroreSpot");
+		    	resp.sendRedirect("view/ViewAggiungiSpot.jsp"); 
+		     }
+		     else
+		     {
+		    	 //Aggiunta spot al database
+		    	 this.db.getSpots().add(spot);
+				   
+			     //Redirezione alla home page
+				 req.getSession().setAttribute("idSpot", newId);
+				 resp.sendRedirect("view/ViewVisualizzaSpot.jsp"); 
+		     }
 		  }
 	 }
 	 
-	 private String findId(String sottoStringa, int precId) {
-	     int num = precId+1;
-	     return sottoStringa+num;
+	 private String newId() {
+		 String res = "";
+		 boolean stop = false;
+		 String last = this.db.getSpots().get(this.db.getSpots().size() - 1).getId();
+		 String malformedNumber = last.substring(2);
+		 int beginIndex = 0;
+		 for(int i = 0; i < malformedNumber.length() && !stop; i++) {
+			 if(malformedNumber.charAt(i) == '0')
+				 beginIndex++;
+			 else
+				 stop = true;
+				 
+		 }
+		 String number = malformedNumber.substring(beginIndex);
+		 int numId = Integer.parseInt(number);
+		 int newNumId = numId + 1;
+		 res += "SP";
+		 for(int i = 0; i < 4 - String.valueOf(newNumId).length(); i++)
+			 res += "0";
+		 res += newNumId;
+		 return res;
 	 }
 	 
 	 public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
