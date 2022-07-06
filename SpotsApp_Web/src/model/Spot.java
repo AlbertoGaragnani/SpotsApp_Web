@@ -151,6 +151,10 @@ public class Spot implements Serializable{
 	public void setRecensioni(List<Recensione> recensioni) {
 		this.recensioni = recensioni;
 	}
+	
+	public void setRecensioni(Recensione r) {
+		this.recensioni.add(r);
+	}
 
 	@Override
 	public int hashCode() {

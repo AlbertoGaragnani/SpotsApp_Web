@@ -81,6 +81,19 @@ public class MockDB {
 		this.password.put(a2, "Muztheoneandonly!");
 		this.password.put(a3, "RuggoTown");
 		
+		//Creazione recensioni mock
+		Recensione r1 = new Recensione();
+		r1.setId("RE0001");
+		r1.setValutazione(4);
+		r1.setTitolo("tuffi mozzafiato");
+		r1.setDescrizione("Una delle scogliere migliori da cui tuffarsi e da cui ammirare il mare. Ottimo anche per snorkling. Consigliato ");
+		
+		Recensione r2 = new Recensione();
+		r1.setId("RE0002");
+		r2.setValutazione(3);
+		
+		
+		
 		//Creazione spot
 		Map<String,Double> mappa = new HashMap<>();
 		List<Recensione> lista = new ArrayList<>();
@@ -95,7 +108,10 @@ public class MockDB {
 		sp.setImmagini(new File("/SpotsApp/images/calamaretto2.jpg"));
 		sp.setPresenzeSegnalate(2);
 		sp.setAffluenza(mappa);
+		lista.add(r1);
+		lista.add(r2);
 		sp.setRecensioni(lista);
+		
 		this.spots.add(sp);
 		
 		sp = new Spot();

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,10 @@ public class Recensione {
 	private Optional<List<Permanenza>> permanenza;
 	
 	public Recensione() {
-		
+		List<Permanenza> perm = new ArrayList<>();
+		this.permanenza = Optional.of(perm);
+		this.titolo= Optional.of("");
+		this.descrizione = Optional.of("");
 	}
 	
 	public Recensione(String id, int valutazione, Optional<String> titolo, Optional<String> descrizione,
@@ -44,24 +48,24 @@ public class Recensione {
 		return titolo;
 	}
 	
-	public void setTitolo(Optional<String> titolo) {
-		this.titolo = titolo;
+	public void setTitolo(String titolo) {
+		this.titolo = Optional.of(titolo);
 	}
 	
 	public Optional<String> getDescrizione() {
 		return descrizione;
 	}
 	
-	public void setDescrizione(Optional<String> descrizione) {
-		this.descrizione = descrizione;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = Optional.of(descrizione);
 	}
 	
 	public Optional<List<Permanenza>> getPermanenza() {
 		return permanenza;
 	}
 	
-	public void setPermanenza(Optional<List<Permanenza>> permanenza) {
-		this.permanenza = permanenza;
+	public void setPermanenza(List<Permanenza> permanenza) {
+		this.permanenza = Optional.of(permanenza);
 	}
 	
 	

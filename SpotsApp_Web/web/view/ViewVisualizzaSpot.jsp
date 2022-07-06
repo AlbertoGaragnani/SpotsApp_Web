@@ -15,12 +15,12 @@
       <title></title>
 		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
 		<script type="text/javascript" src="/SpotsApp/scripts/visualizzaspot.js"></script>
-   </head>
-   <body onload="showSlides(1)">
-   	<%
+			<%
 		String idSpot = (String) session.getAttribute("idSpot");
    	System.out.println(idSpot);
-		String nome="";String indirizzo="";
+		String nome="";String indirizzo="";String descrizione="";
+		double punteggio=0;
+		
 		int presenzeSegnalate;
 		List<Recensione> recensioni = new ArrayList<>();
 		List<Attivita> attivita = new ArrayList<>();
@@ -34,43 +34,104 @@
 				nome = s.getNome();
 				indirizzo = s.getIndirizzo();
 				presenzeSegnalate = s.getPresenzeSegnalate();
-				recensioni = s.getRecensioni();
 				attivita = s.getAttivita();
 				immagini = s.getImmagini();
+				descrizione=s.getDescrizione();
 				
+				if(s.getRecensioni().size()>0)
+				{
+					recensioni = s.getRecensioni();
+					for (Recensione r: recensioni)
+					{
+						punteggio += r.getValutazione();
+					}
+					punteggio = punteggio / recensioni.size();
+				}
 			}
+			
 		}
 	
 	%>
+   </head>
+   <body onload="showSlides(1)">
+   
    		<h1><%= nome %></h1>
-   		<div class="container">
-	   		<%
-	   		for(int i =0;i<immagini.size();i++ )
-	   		{
-	   			System.out.println(immagini.get(i).getPath());
-	   			System.out.println(immagini.get(i).getPath().replace('\\', '/'));
-	   			%>
-	   			<div class="mySlides">
-				    <div class="numbertext"><%= i+1 %> / <%= immagini.size() %></div>
-				      <img src=<%= immagini.get(i).getPath().replace('\\', '/')  %> />
-				</div>
-	   			
-	   			<%
-	   		}
-	   		
-	   		%>
-	   		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
- 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
-	   		
+   		<div class="floatContainer" >
+   		
+	   		<div class="container" >
+		   		<%
+		   		for(int i =0;i<immagini.size();i++ )
+		   		{
+		   			System.out.println(immagini.get(i).getPath());
+		   			System.out.println(immagini.get(i).getPath().replace('\\', '/'));
+		   			%>
+		   			<div class="mySlides">
+					    <div class="numbertext"><%= i+1 %> / <%= immagini.size() %></div>
+					      <img class="slideImg" src=<%= immagini.get(i).getPath().replace('\\', '/')  %> />
+					</div>
+		   			
+		   			<%
+		   		}
+		   		
+		   		%>
+		   		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	 			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		   		
+	    	</div>
+	    	
+	    	
+	    	<div class = "InfoSpot">
+	    	
+	    		<div class= "punteggio" >
+	    			
+	    			<span><%= punteggio %> &#11088;</span>
+	    			
+	    		</div>
+	    		<div class= "descrizione" >
+	    		<label> Descrizione:</label>
+	    			<span><%= descrizione %></span>	
+	    				
+	    		</div>
+	    		
+	    		<div class ="bottoni">
+	    			<form action="/SpotsApp/gestioneUtente" method="get">
+				     	<input type="submit" name="segnalapresenza" value="Segnala presenza" >
+					    <input type="submit" name="lasciarecensione" value="Lascia Recensione" >
+					  	<input type="submit" name="segnalaspot" value="Segnala Spot" >
+					  	<input type="submit" name="backHome" value="Home" >
+				 	</form>
+	    		
+	    		</div>
+	    	
+	    	
+	    	</div>
     	</div>
     	
-    	<div>
-		 	<form action="/SpotsApp/gestioneUtente" method="get">
-		     	<input type="submit" name="logout" value="Logout" >
-			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
-			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
-		 	</form>
-	     </div>
+    	<div class="recensioni">
+    			<form action="/SpotsApp/gestioneUtente" method="get">
+		    	 	<ol>
+		    	 	<%
+		    	 	for(Recensione r : recensioni)
+		    	 	{
+		    	 		
+		    	 		
+		    	 		%>
+		    	 		<li>
+		    	 			<span><%= r.getValutazione() %></span><br>
+		    	 			<span><%= r.getTitolo() %></span><br>
+		    	 			<span><%= r.getDescrizione() %></span><br>
+		    	 			<input hidden="true" name="idRecensione" value=<%= r.getId() %> />
+		    	 			<input type="submit"  name="segnalarecensione" value="Segnala" />
+		    	 		</li>
+		    	 		<%
+		    	 	}
+		    	 	%>
+		    	 	</ol>
+	   			</form>
+    	
+    	</div>
+    	
+    	
     
    
     
