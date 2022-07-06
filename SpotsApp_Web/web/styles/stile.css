@@ -3,11 +3,21 @@
   box-sizing: border-box;
 }
 
+
+.topBanner{
+	display:inline-block;
+}
+h1{
+	padding:20px;
+	text-align:center;
+	color: #0bbaf4;
+}
+
 h2{
-	color: black;
+	color: #0bbaf4;
 }
 h3{
-	color: black !important;
+	color: #0bbaf4;
 }
 
 
@@ -15,7 +25,6 @@ body {
  font-family: Verdana, Helvetica, sans-serif;
  font-size: 25pt;
  background: white ; 
- color: #0bbaf4;
  margin:0;
 }
 
@@ -38,9 +47,12 @@ label{
     width: 250px;
     text-align: left;
     padding: 50 px;
+    color: #0bbaf4;
 }
+
+
  
-input[type=button], input[type=submit], input[type=reset], button {
+input[type=button], input[type=submit], input[type=reset], button, #homelink {
   background-color: #d8d8d8;
   border: 1px solid black;
   color: black;
@@ -115,24 +127,20 @@ input[type=button], input[type=submit], input[type=reset], button {
 }
 
 
-.spotListImg{
-	width: 300px;
-    height: 200px;
-}
-
 
 .floatContainer {
     border: 3px solid #fff;
     padding: 40px;
     display:table;
+    border-radius: 25px;
     width:auto;
+    margin:auto;
 }
 
 .infoSpot
 {
 	width: 40%;
 	position: relative;
-	float:left;
 	padding: 20px;
 	display: table-cell;
 }
@@ -140,7 +148,6 @@ input[type=button], input[type=submit], input[type=reset], button {
 /* Position the image container (needed to position the left and right arrows) */
 .container {
   position: relative;
-	float:left;
 	padding: 20px;
 	width: 60%;
 	display:table-cell;
@@ -152,6 +159,69 @@ input[type=button], input[type=submit], input[type=reset], button {
 
 .recensioni
 {
-	  border-radius: 25px;
-  border: 2px solid #73AD21;
+	border-radius: 25px;
+  	border: 2px solid #73AD21;
+}
+
+.logout
+{
+	   position:absolute;
+   top:0;
+   right:0;
+}
+
+.listspotItem{
+	border: 2px solid #01A3FF;
+	height:250px;
+	
+	
+}
+
+/*a little bit of reset*/
+#listaSpot, #listaspot p, #listaspot h3 {
+	list-style: none;
+	margin:auto; padding:0;
+	
+}
+
+#listaSpot, #listaspot p {
+	display:inline-block;
+	
+}
+
+#listaspot > li{
+  float:left;
+  margin-right: 20px;
+  padding:20px;
+}
+
+#listaspot > li > .listspotItem > .spotlistImg{
+  display:block;
+  float:left;
+  margin-right:10px;
+}
+
+
+#listaspot > li > .listspotItem > .spotListImg {
+  width:150px; height:150px;
+}
+
+.infopersonali
+{
+	width: 50%;
+	float:left;
+	display: table-cell;
+	border: 2px solid #01A3FF;
+	border-radius: 25px;
+	padding:20px;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.preferiti{
+	float:right;
+	width: 50%;
+	display:table-cell;
+	border: 2px solid #01A3FF;
+	border-radius: 25px;
+	padding:20px;
 }

@@ -55,13 +55,15 @@
 		    	 		System.out.println(s.getId());
 		    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
 		    	 		%>
-		    	 		<li>
-		    	 			<p><%= s.getNome() %></p>
-		    	 			<p><%= s.getIndirizzo() %></p>
-		    	 			<img class="spotListImg" src=<%= img %> align="left" />
-		    	 			<input hidden="true" name="idSpot"  />
-		    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
+		    	 		<li >
+		    	 			<div class="listspotItem" >
+			    	 			<h3><%= s.getNome() %></h3>
+			    	 			<br>
+			    	 			<img class="spotListImg" src=<%= img %> /><p><%= s.getIndirizzo() %></p>
+			    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
+		    	 			</div>
 		    	 		</li>
+		    	 		<br>
 		    	 		<%
 		    	 	}
 		    	 	%>

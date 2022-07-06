@@ -83,8 +83,7 @@ public class GestioneUtenteController extends HttpServlet{
 		}
 		else if(req.getParameter("visualizzaprofilo") != null)
 		{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaProfilo.jsp");
-			rd.forward(req, resp);
+			resp.sendRedirect("view/ViewVisualizzaProfilo.jsp");
 		}
 		else if(req.getParameter("aggiungispot") != null)
 		{

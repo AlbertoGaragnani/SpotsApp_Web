@@ -19,9 +19,7 @@ public class VisualizzaProfiloController extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		//Logout
-		req.getSession().invalidate();
-		resp.sendRedirect("view/ViewLogin.jsp");
+		
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -34,6 +32,11 @@ public class VisualizzaProfiloController extends HttpServlet{
 		else if(req.getParameter("inserzioni") != null)
 		{
 			//LOgica per rimuovere inserzioni
+		}
+		else if(req.getParameter("logout") != null)
+		{
+			req.getSession().invalidate();
+			resp.sendRedirect("view/ViewLogin.jsp");
 		}
 	}	
 
