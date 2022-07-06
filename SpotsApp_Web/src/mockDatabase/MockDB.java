@@ -94,11 +94,14 @@ public class MockDB {
 		r1.setId("RE0002");
 		r2.setValutazione(3);
 		
-		
+		Recensione r3 = new Recensione();
+		r3.setId("RE0003");
+		r3.setValutazione(5);
+		r3.setTitolo("Bellissimo canestro");
+		r3.setDescrizione("Veramente uno dei campi da basket piu belli in cui io abbia mai giocato");
 		
 		//Creazione spot
 		Map<String,Double> mappa = new HashMap<>();
-		List<Recensione> lista = new ArrayList<>();
 		List<Spot> spotPreferiti = new ArrayList<>();
 		Spot sp = new Spot();
 		sp.setId("SP0001");
@@ -106,14 +109,12 @@ public class MockDB {
 		sp.setNome("Calamaretto");
 		sp.setIndirizzo("Via dei calamaretti");
 		sp.setAttivita(Attivita.CLIFFDIVING);
-		//Settare le immagini
+		sp.setDescrizione("Spot perfetto per HighJumping");
 		sp.setImmagini(new File("/SpotsApp/images/calamaretto1.jpg"));
 		sp.setImmagini(new File("/SpotsApp/images/calamaretto2.jpg"));
 		sp.setPresenzeSegnalate(2);
 		sp.setAffluenza(mappa);
-		lista.add(r1);
-		lista.add(r2);
-		sp.setRecensioni(lista);
+		sp.setRecensioni(r1);
 		
 		this.spots.add(sp);
 		
@@ -123,12 +124,11 @@ public class MockDB {
 		sp.setUsernameUtente(u6.getUsername());
 		sp.setNome("Unipol Arena");
 		sp.setAttivita(Attivita.BASKETBALL);
-		//sp.setAttivita(Attivita.CLIFFDIVING);
-		//Settare le immagini
+		sp.setDescrizione("Grande capienza ma molto dispersivo, più adatto per concerti che per eventi sportivi. Facile da raggiungere");
 		sp.setImmagini(new File("/SpotsApp/images/unipolArena1.png"));
 		sp.setPresenzeSegnalate(0);
 		sp.setAffluenza(mappa);
-		sp.setRecensioni(lista);
+		sp.setRecensioni(r2);
 		this.spots.add(sp);
 		spotPreferiti.add(sp);
 		
@@ -138,11 +138,11 @@ public class MockDB {
 		sp.setUsernameUtente(u5.getUsername());
 		sp.setNome("Paladozza");
 		sp.setAttivita(Attivita.BASKETBALL);
-		//Settare le immagini
+		sp.setDescrizione("Il tempio della pallacanestro. Atmosfera incredibile, peccato giochi spesso la squadra sbagliata");
 		sp.setImmagini(new File("/SpotsApp/images/paladozza.png"));
 		sp.setPresenzeSegnalate(100);
 		sp.setAffluenza(mappa);
-		sp.setRecensioni(lista);
+		sp.setRecensioni(r3);
 		this.spots.add(sp);
 		spotPreferiti.add(sp);
 		
@@ -152,10 +152,8 @@ public class MockDB {
 		sp.setUsernameUtente(u6.getUsername());
 		sp.setNome("L'angolo del parkour");
 		sp.setAttivita(Attivita.PARKOUR);
-		//Settare le immagini
 		sp.setPresenzeSegnalate(0);
 		sp.setAffluenza(mappa);
-		sp.setRecensioni(lista);
 		this.spots.add(sp);
 		
 		//Creazione preferiti

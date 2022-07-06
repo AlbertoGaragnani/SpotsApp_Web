@@ -81,6 +81,16 @@
         <servlet-name>VisualizzaSpotController</servlet-name>
         <url-pattern>/visualizzaSpot</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LasciaRecensioneController</servlet-name>
+        <servlet-class>controller.LasciaRecensioneController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LasciaRecensioneController</servlet-name>
+        <url-pattern>/lasciaRecensione</url-pattern>
+    </servlet-mapping>
 	<!-- Welcome pages -->
 	<!-- pleonastico: tomcat "tenta" in automatico le index.html e index.jsp -->
 	

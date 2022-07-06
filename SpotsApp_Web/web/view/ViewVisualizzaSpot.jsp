@@ -6,6 +6,7 @@
 <%@ page import="model.Recensione" %>
 <%@ page import="java.io.*" %>
 <%@ page import="mockDatabase.MockDB" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <html>
    <head>
@@ -19,9 +20,10 @@
 		String idSpot = (String) session.getAttribute("idSpot");
    		System.out.println(idSpot);
 		String nome="";String indirizzo="";String descrizione="";
-		double punteggio=0;
+		double punteggioTemp = 0;
+		double punteggio = 0;
 		
-		int presenzeSegnalate;
+		int presenzeSegnalate = 0;
 		List<Recensione> recensioni = new ArrayList<>();
 		List<Attivita> attivita = new ArrayList<>();
 		List<File> immagini = new ArrayList<>();
@@ -43,9 +45,10 @@
 					recensioni = s.getRecensioni();
 					for (Recensione r: recensioni)
 					{
-						punteggio += r.getValutazione();
+						punteggioTemp += r.getValutazione();
 					}
-					punteggio = punteggio / recensioni.size();
+					punteggioTemp = punteggioTemp / recensioni.size();
+					punteggio = (int)(Math.round(punteggioTemp * 10)) / 10.0;
 				}
 			}
 			
@@ -89,8 +92,17 @@
 	    		</div>
 	    		<div class= "descrizione" >
 	    		<label> Descrizione:</label>
-	    			<span><%= descrizione %></span>	
+	    			<p><%= descrizione %></p>	
 	    				
+	    		</div>
+	    		
+	    		<div>
+	    			<label> Presenze segnalate: </label>
+	    			<p><%= presenzeSegnalate %></p>
+	    		</div>
+	    			<label> Affluenza </label>
+	    		<div>
+	    			
 	    		</div>
 	    		
 	    		<div class ="bottoni">
@@ -139,10 +151,5 @@
 	   			</form>
     	
     	</div>
-    	
-    	
-    
-   
-    
    </body>
 </html>
