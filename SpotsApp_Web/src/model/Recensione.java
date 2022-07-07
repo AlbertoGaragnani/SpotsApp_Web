@@ -10,12 +10,14 @@ public class Recensione {
 	private String titolo;
 	private String descrizione;
 	private List<Permanenza> permanenza;
+	private String username;
 	
 	public Recensione() {
 		List<Permanenza> perm = new ArrayList<>();
 		this.permanenza = perm;
 		this.titolo= "";
 		this.descrizione = "";
+		this.username="";
 	}
 	
 	public Recensione(String id, int valutazione, String titolo, String descrizione,
@@ -25,6 +27,15 @@ public class Recensione {
 		this.titolo = titolo;
 		this.descrizione = descrizione;
 		this.permanenza = permanenza;
+	}
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getId() {

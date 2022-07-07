@@ -12,7 +12,9 @@
 		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
    </head>
    <body>
-   		<%
+		<% if(session.getAttribute("currentUser")!=null)
+		{
+			
 	   	Utente user = (Utente) session.getAttribute("currentUser");
 	   	%>
 	   	<div>
@@ -70,6 +72,12 @@
     	</div>
     	<a href="ViewGestioneUtente.jsp" id="homelink" style="position:fixed;bottom:0;right:5px">Home</a>
     
-    
+    	<%
+   	} 
+   	else{
+   		%><h1>SESSIONE NON VALIDA</h1> <%
+   	}
+	%>
+   	
    </body>
 </html>

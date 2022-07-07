@@ -71,6 +71,11 @@
 	%>
    </head>
    <body onload="showSlides(1)">
+   
+      
+   	<% if(session.getAttribute("currentUser")!=null)
+   	{
+	%>
    		<div>
 				<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
 				<img src="/SpotsApp/images/Icon.png" align="right"/>
@@ -103,7 +108,7 @@
 	    		{
 	    			%>
 	    			<div>
-	    				<p>Lo spot � stato aggiunto ai preferiti</p>
+	    				<p>Spot aggiunto correttamente ai preferiti</p>
 	    			</div>
 	    			<%
 	    			session.removeAttribute("aggiunto");
@@ -188,7 +193,9 @@
 				    	 						<span>&#11088;</span>
 				    	 					<%
 				    	 				}
-				    	 				%><br>
+				    	 				%>
+				    	 				<span><%= r.getUsername() %></span>
+				    	 				<br>
 				    	 			<h3><%= r.getTitolo() %></h3>
 				    	 			<div id="descrizionne"><%= r.getDescrizione() %></div>
 				    	 			<input hidden="true" name="idRecensione" value=<%= r.getId() %> />
@@ -202,5 +209,13 @@
 	   			</form>
     	
     	</div>
+    	
+    		<%
+   	} 
+   	else{
+   		%><h1>SESSIONE NON VALIDA</h1> <%
+   	}
+	%>
+   	
    </body>
 </html>

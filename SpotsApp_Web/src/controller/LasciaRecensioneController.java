@@ -14,6 +14,7 @@ import mockDatabase.MockDB;
 import model.Permanenza;
 import model.Recensione;
 import model.Spot;
+import model.Utente;
 
 public class LasciaRecensioneController extends HttpServlet{
  
@@ -77,6 +78,9 @@ public class LasciaRecensioneController extends HttpServlet{
 
 		 //Recupero commento
 		 String commentoRecensione = req.getParameter("commentoRecensione");
+		 
+		 Utente user = (Utente) req.getSession().getAttribute("currentUser");
+		 String username = user.getUsername();
 
 		 //Unica condizione di errore sul voto mancante
 		 if(voto==null)
@@ -90,6 +94,8 @@ public class LasciaRecensioneController extends HttpServlet{
 			 
 			 //Setto il voto
 			 recensione.setValutazione(Integer.parseInt(voto));
+			 
+			 recensione.setUsername(username);
 			 
 			 //Setto il titolo
 			 if(!titoloRecensione.equals(""))

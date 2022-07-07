@@ -113,11 +113,13 @@ public class MockDB {
 		r1.setTitolo("tuffi mozzafiato");
 		r1.setDescrizione("Una delle scogliere migliori da cui tuffarsi e da cui ammirare il mare. Ottimo anche per snorkling. Consigliato ");
 		r1.setPermanenza(mattinaPomeriggio);
+		r1.setUsername(u1.getUsername());
 		
 		Recensione r2 = new Recensione();
 		r2.setId("RE0002");
 		r2.setValutazione(3);
 		r2.setPermanenza(mattina);
+		r2.setUsername(u2.getUsername());
 		
 		Recensione r3 = new Recensione();
 		r3.setId("RE0003");
@@ -125,7 +127,7 @@ public class MockDB {
 		r3.setTitolo("Bellissimo canestro");
 		r3.setDescrizione("Veramente uno dei campi da basket piu belli in cui io abbia mai giocato");
 		r3.setPermanenza(pomeriggioSera);
-		
+		r3.setUsername(u3.getUsername());
 		//Recensioni aggiunte da frayrtix
 		Recensione r4 = new Recensione(); //Calamaretto
 		r4.setId("RE0004");
@@ -133,7 +135,7 @@ public class MockDB {
 		r4.setTitolo("Mi è piaciuto? Si. Ci tornerò? vediamo..");
 		r4.setPermanenza(pomeriggio);
 		r4.setDescrizione("Bell'esperienza ma sconsigliata ai piccoli.. Tuffi PERICOLOSI");
-		
+		r4.setUsername(u6.getUsername());
 		
 		Recensione r5 = new Recensione(); //Paladozza
 		r5.setId("RE0005");
@@ -141,10 +143,11 @@ public class MockDB {
 		r5.setTitolo("Oscura la vallataaa");
 		r5.setPermanenza(sera);
 		r5.setDescrizione("Dopo 16 anni torno a palazzo per vedere la V, quarti finale di Eurocup contro ULM, TIFO BELLISSIMO.. E poi alla stoppata di Kyle.. Fantastico, consigliato a tutti gli appassionati di basket");
-		
+		r5.setUsername(u4.getUsername());
 		Recensione r6 = new Recensione(); //Elefante
 		r6.setId("RE0006");
 		r6.setValutazione(4);
+		r6.setUsername(u5.getUsername());
 		
 		Recensione r7 = new Recensione(); //Elefante
 		r7.setId("RE0007");
@@ -152,19 +155,20 @@ public class MockDB {
 		r7.setTitolo("TOP");
 		r7.setDescrizione("La roccia sembra davvero il muso di un'elefante!!! I miei figli si sono divertiti moltissimo, sotto la sporgenza tutti anche per i piccini!");
 		r7.setPermanenza(mattina);
-		
+		r7.setUsername(u2.getUsername());
 		Recensione r8 = new Recensione(); //Elefante
 		r8.setId("RE0008");
 		r8.setValutazione(5);
 		r8.setTitolo("L'elefante più grande mai visto!");
 		r8.setPermanenza(pomeriggio);
-		
+		r8.setUsername(u4.getUsername());
 		Recensione r9 = new Recensione(); //Parco della resistenza
 		r9.setId("RE0009");
 		r9.setValutazione(2);
 		r9.setTitolo("Si può fare di piu, diceva qualcuno..");
 		r9.setDescrizione("Tabelloni rovinati, quasi sempre pieno di gente.. Si salva solo il murales.. ");
 		r9.setPermanenza(pomeriggioSera);
+		r9.setUsername(u3.getUsername());
 		
 		Recensione r10 = new Recensione(); //Parco rosso
 		r10.setId("RE0010");
@@ -172,6 +176,7 @@ public class MockDB {
 		r10.setTitolo("3vs3, ho vinto io!");
 		r10.setDescrizione("Campo stupendo <3");
 		r10.setPermanenza(pomeriggio);
+		r10.setUsername(u3.getUsername());
 		
 		Recensione r11 = new Recensione(); //Parco rosso
 		r11.setId("RE0011");
@@ -179,6 +184,7 @@ public class MockDB {
 		r11.setTitolo("Venite numerosi!!");
 		r11.setDescrizione("Bellissimo ma poco frequentato, peccato");
 		r11.setPermanenza(mattinaPomeriggio);
+		r11.setUsername(u1.getUsername());
 		
 		
 		Recensione r12 = new Recensione(); //Parco rosso
@@ -187,17 +193,19 @@ public class MockDB {
 		r12.setTitolo("Così.. NON VA BENE");
 		r12.setDescrizione("Finalmente il comune fa QUALCOSA per noi e il risultato?! La sera non si può giocare perchè l'illuminazione è pessima e ci vanno i ragazzini con la cassa a disturbare tutti quelli che vogliono stare nei dintorni in tranquillita.. BAH.. PRENDERE PROVVEDIMENTIII");
 		r12.setPermanenza(pomeriggioSera);
-		
+		r12.setUsername(u6.getUsername());
 		Recensione r13 = new Recensione(); //Porto Novo
 		r13.setId("RE0013");
 		r13.setValutazione(4);
 		r13.setTitolo("Avventura a portata di mano");
 		r13.setPermanenza(pomeriggio);
+		r13.setUsername(u4.getUsername());
 		
 		Recensione r14 = new Recensione(); //Porto Novo
 		r14.setId("RE0014");
 		r14.setValutazione(4);
 		r14.setPermanenza(pomeriggio);
+		r14.setUsername(u2.getUsername());
 		
 		Recensione r15 = new Recensione(); //Porto Novo
 		r15.setId("RE0015");
@@ -205,6 +213,7 @@ public class MockDB {
 		r15.setTitolo("MOZZAFIATO");
 		r15.setDescrizione("MOZZAFIATO: ci sono stato insieme alla mia ragazza per l'anniversario, è quella giusta (la spiaggia..). Paesaggio mozzafiato, mare bellissimo e super tuffi attaccati alla spiaggia. Molto colpito da due ragazzi/adulti che stavano in cima a dare consigli ai visitatori su come buttarsi per evitare qualcuno si facesse male!");
 		r15.setPermanenza(sera);
+		r15.setUsername(u5.getUsername());
 		
 		Recensione r16 = new Recensione(); //Skate non fluo
 		r16.setId("RE0016");
@@ -212,12 +221,14 @@ public class MockDB {
 		r16.setTitolo("Fake");
 		r16.setDescrizione("Falso..Ci sono stato, magari per lo skate va bene ma per il parkour.. poca roba.. Molto meglio il J-Set a 100m da lì..");
 		r16.setPermanenza(mattina);
+		r16.setUsername(u1.getUsername());
 		
 		Recensione r17 = new Recensione(); //Skate non fluo
 		r17.setId("RE0017");
 		r17.setValutazione(4);
 		r17.setDescrizione("Illuminato benissimo, bello anche di sera. Magari ecco, due rampe in piu..");
 		r17.setPermanenza(sera);
+		r17.setUsername(u4.getUsername());
 		
 		Recensione r18 = new Recensione(); //Frisbee 1 cusb
 		r18.setId("RE0018");
@@ -225,7 +236,7 @@ public class MockDB {
 		r18.setTitolo("MOZZAFIATO");
 		r18.setDescrizione("Mi sono scavigliato, campo tenuto malissimo che sul bagnato diventa una palude");
 		r18.setPermanenza(sera);
-		
+		r18.setUsername(u4.getUsername());
 		
 		//Creazione spot
 		Map<String,Double> mappa = new HashMap<>();

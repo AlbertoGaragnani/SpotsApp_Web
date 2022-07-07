@@ -62,6 +62,7 @@ public class VisualizzaProfiloController extends HttpServlet{
 		}
 		else if(req.getParameter("logout") != null)
 		{
+			req.getSession().removeAttribute("currentUser");
 			req.getSession().invalidate();
 			resp.sendRedirect("view/ViewLogin.jsp");
 		}
