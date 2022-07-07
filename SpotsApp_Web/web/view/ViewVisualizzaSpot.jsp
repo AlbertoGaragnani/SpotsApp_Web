@@ -16,6 +16,7 @@
 
       <title></title>
 		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
+		<link type="text/css" href="${pageContext.request.contextPath}/styles/chart.css" rel="stylesheet"></link>
 		<script type="text/javascript" src="/SpotsApp/scripts/visualizzaspot.js"></script>
 			<%
 		String idSpot = (String) session.getAttribute("idSpot");
@@ -127,15 +128,21 @@
 	    		percPOM = (int)(Math.round(percPOM * 100)) / 100.0;
 	    		double percSER = affluenzaSera / totAffluenza * 100;
 	    		percSER = (int)(Math.round(percSER * 100)) / 100.0;
+	    		int mattina = (int) percMAT;
+	    		int pomeriggio = (int) percPOM;
+	    		int sera = (int) percSER;
+	    		System.out.println("Mat: " + mattina + " POm: " + pomeriggio + "Sera: " +sera);
 	    		%>
 	    		
 	    		<div>
-	    			<label> Affluenza: </label>
-	    			<ul>
-	    				<li><label>Mattina: <%= percMAT %></label></li>
-	    				<li><label>Pomeriggio: <%= percPOM %></label></li>
-	    				<li><label>Sera: <%= percSER %></label></li>
-	    			</ul>
+		    		<dl>
+						  <dt>
+						    Affluenza
+						  </dt>
+						  <dd class="percentage percentage-<%=mattina%>"><span class="text">MATTINA <%=percMAT%>%</span></dd><br>
+						  <dd class="percentage percentage-<%=pomeriggio%>"><span class="text">POME <%=percPOM%>%</span></dd><br>
+						  <dd class="percentage percentage-<%=sera%>"><span class="text">SERA <%=percSER%>%</span></dd>
+					</dl>
 	    		</div>
 	    		
 	    		<div class ="bottoni">
