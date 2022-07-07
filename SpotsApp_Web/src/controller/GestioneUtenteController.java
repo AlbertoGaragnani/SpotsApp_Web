@@ -107,14 +107,14 @@ public class GestioneUtenteController extends HttpServlet{
 		{
 			//Ha messo solo l'indirizzo
 			for(Spot spot : this.db.getSpots())
-				if(spot.getIndirizzo().equals(indirizzo))
+				if(spot.getIndirizzo().toLowerCase().contains(indirizzo.toLowerCase()))
 					res.add(spot);
 		}
 		else
 		{
 			//Ha inserito tutti e due
 			for(Spot spot : this.db.getSpots())
-				if(spot.getAttivita().contains(Attivita.valueOf(attivita)) && spot.getIndirizzo().equals(indirizzo))
+				if(spot.getAttivita().contains(Attivita.valueOf(attivita)) && spot.getIndirizzo().toLowerCase().contains(indirizzo.toLowerCase()))
 					res.add(spot);
 		}
 		return res;

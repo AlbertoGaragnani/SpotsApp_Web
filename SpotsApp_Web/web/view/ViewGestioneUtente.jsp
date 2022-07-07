@@ -54,7 +54,7 @@
 		<div style="padding:40px">
 		 	<form action="/SpotsApp/gestioneUtente" method="get">
 			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
-			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
+			  	<input type="submit" name="aggiungispot" value="Aggiungi Spot" >
 		 	</form>
 	     </div>		
 		     	
