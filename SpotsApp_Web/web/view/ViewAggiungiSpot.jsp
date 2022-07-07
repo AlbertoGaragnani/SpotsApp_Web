@@ -61,32 +61,6 @@
 					  </div>
 					</form>	         	  
 	         </div>
-	           
-	           
-           
-           
-         <!--       <p>Inserisci i dati dello Spot</p>
-               <form action="/SpotsApp/aggiungiSpot" method="post" enctype="multipart/form-data">
-                   <label>Nome <input type="text" name="nomeSpot"/></label><br>
-                   <label>Indirizzo <input type="text" name="indirizzoSpot"/></label><br>
-                   <label>Attività
-	                   <select name="activities" multiple="multiple">
-	                   <%
-	              //     Attivita[] activities = Attivita.values();
-	               //    for(Attivita a : activities)
-	                   {
-	                   %>
-	                //   		
-	                   <%
-	                   }
-	                   %>
-	                   </select>
-                   </label><br>
-				   <label>Descrizione <textarea name="descrizione" rows="8" cols="8">Inserire una breve descrizione dello spot</textarea></label><br>
-                   <label>Carica foto <input type="file" name="file" value="image" multiple/></label><br>
-                   <input type="submit" value="Conferma" ><br>
-                 
-         </form>  -->
      </div>
      
      <% 
@@ -104,9 +78,10 @@
   		%>
 		<div> Lo spot che hai cercato di inserire è già presente nel dataBase!</div>
 		<%
-		session.removeAttribute("RegistrazioneOK");
+		session.removeAttribute("Errore");
   	}
 	
      %>
+     <a href="ViewGestioneUtente.jsp" id="backlink" style="position:fixed;bottom:0;right:5px">Back</a>
    </body>
 </html>

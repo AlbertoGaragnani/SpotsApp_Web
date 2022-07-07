@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -80,8 +79,7 @@ public class GestioneUtenteController extends HttpServlet{
 		}
 		else if(req.getParameter("aggiungispot") != null)
 		{
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewAggiungiSpot.jsp");
-			rd.forward(req, resp);
+			resp.sendRedirect("view/ViewAggiungiSpot.jsp");
 		}
 		else if(req.getParameter("visualizzaspot") != null)
 		{			
