@@ -106,17 +106,19 @@
 	    	
 	    		<div class= "punteggio" >
 	    			
-	    			<span><%= punteggio %> &#11088;</span>
+	    			<span><%= punteggio %> &#11088;</span><br>
 	    			
 	    		</div>
 	    		<div class= "descrizione" >
-	    		<label> Descrizione:</label>
+	    		<label> Descrizione:</label><br>
 	    			<p class = infospottext><%= descrizione %></p>		    				
+	    		</div>
+	    		<div class= "descrizione" >
+	    		<label> Indirizzo:</label><p class = infospottext><%= indirizzo %></p>		    				
 	    		</div>
 	    		
 	    		<div>
-	    			<label> Presenze segnalate: </label>
-	    			<p class = "infospottext"><%= presenzeSegnalate %></p>
+	    			<label> Presenze:</label><p class = "infospotpresenze"><%=presenzeSegnalate%></p>
 	    		</div>
 	    		
 	    		<%
@@ -137,7 +139,7 @@
 	    		<div>
 		    		<dl>
 						  <dt>
-						    Affluenza
+						   		Affluenza
 						  </dt>
 						  <dd class="percentage percentage-<%=mattina%>"><span class="text">MATTINA <%=percMAT%>%</span></dd><br>
 						  <dd class="percentage percentage-<%=pomeriggio%>"><span class="text">POME <%=percPOM%>%</span></dd><br>
