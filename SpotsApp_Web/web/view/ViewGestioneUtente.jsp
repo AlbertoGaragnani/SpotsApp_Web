@@ -23,30 +23,41 @@
 		<h1>HOME UTENTE</h1><br><br>
 		<div class="floatContainer">
 	   		<div class="home" align="center">
-		   		<h2>Cerca Spot</h2>
-		   		<p>Inserisci i criteri di ricerca dello Spot</p>
-		   		<form action="/SpotsApp/gestioneUtente" method="post">
-		   		<div class="form_item" >
-		   			<label>Indirizzo</label> <input type="text" name="indirizzo" size="30"/>
-		   		</div>
-		   		<div class="form_item">
-		      		<label>Attivita 
-		      		<select name="attivita">
-		      		<option value="" >Attivita</option>
-		      			<%
-		      			for(Attivita a : Attivita.values())
-		      			{
-		      				%>
-		      				<option value=<%= a.name() %>><%= a.name() %></option>
-		      				<%
-		      			}
-		      			%>
-		      		</select>
-		      		</label><br>
-		      	</div>
-		      		<input type="submit" name="cercaspot" value="CercaSpot"/>
-		      		
-		     	</form>
+		   		<div class="formdiv" >
+			      <form class="form" action="/SpotsApp/gestioneUtente" method="post">
+				  <div class="form__title">Cerca Spot</div>
+				  <p class="form__desc">
+				  Inserisci i criteri di ricerca dello spot</p>
+				  <div class="form__item">
+				  		<label for="indirizzo" class="form_label">Indirizzo</label>
+			   			<input type="text" class="form_input" name="indirizzo" id="indirizzo" size="40" placeholder="Via..."/>
+				  </div>
+				  <div class="form__item">
+				   		<label class="form_label" for="attivita" >Attivita </label>
+						<select name="attivita">
+			      		<option value="" >Attivita</option>
+			      			<%
+			      			for(Attivita a : Attivita.values())
+			      			{
+			      				%>
+			      				<option value=<%= a.name() %>><%= a.name() %></option>
+			      				<%
+			      			}
+			      			%>
+			      		</select>
+				  </div>
+				  <div class="form__item">
+				    <button class="form__btn" type="submit" name="cercaspot">Cerca Spot</button>
+				  </div>
+				</form>	
+				</div>        
+		<div style="padding:40px">
+		 	<form action="/SpotsApp/gestioneUtente" method="get">
+			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
+			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
+		 	</form>
+	     </div>		
+		     	
 	    	</div>
 	     
 		     <%
@@ -78,17 +89,12 @@
 			    	 	</ol>
 			    	 </form>
 		    	 </div>
+
 		    	 <%
 		     }
 		     %>
 	     </div>
-	     <div>
-		 	<form action="/SpotsApp/gestioneUtente" method="get">
-		     	<input type="submit" name="logout" value="Logout" >
-			    <input type="submit" name="visualizzaprofilo" value="Visualizza Profilo" >
-			  	<input type="submit" name="aggiungispot" value="Aggiungi_Spot" >
-		 	</form>
-	     </div>
+	     
 	     
     
 	
