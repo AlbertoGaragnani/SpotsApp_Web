@@ -67,7 +67,16 @@ public class VisualizzaSpotController extends HttpServlet{
 					break;
 				}				
 			}
-			this.db.getPreferiti().get(user.getUsername()).add(preferito);
+			boolean isPresent = false;
+			for(Spot s : this.db.getPreferiti().get(user.getUsername())) {
+				if(s.getId().equals(preferito.getId())) {
+					isPresent = true;
+					break;
+				}
+			}
+			if(!isPresent)
+				this.db.getPreferiti().get(user.getUsername()).add(preferito);
+			req.getSession().setAttribute("aggiunto", "");
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
 		}
 	}

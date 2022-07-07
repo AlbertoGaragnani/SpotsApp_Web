@@ -3,6 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="model.Attivita" %>
 <%@ page import="model.Spot" %>
+<%@ page import="model.Permanenza" %>
 <%@ page import="model.Recensione" %>
 <%@ page import="java.io.*" %>
 <%@ page import="mockDatabase.MockDB" %>
@@ -24,6 +25,9 @@
 		double punteggio = 0;
 		
 		int presenzeSegnalate = 0;
+		double affluenzaMattina = 0;
+		double affluenzaPomeriggio = 0;
+		double affluenzaSera = 0;
 		List<Recensione> recensioni = new ArrayList<>();
 		List<Attivita> attivita = new ArrayList<>();
 		List<File> immagini = new ArrayList<>();
@@ -46,6 +50,15 @@
 					for (Recensione r: recensioni)
 					{
 						punteggioTemp += r.getValutazione();
+						for(Permanenza p : r.getPermanenza())
+						{
+							if(p == Permanenza.MATTINA)
+								affluenzaMattina++;
+							else if(p == Permanenza.POMERIGGIO)
+								affluenzaPomeriggio++;
+							else
+								affluenzaSera++;
+						}
 					}
 					punteggioTemp = punteggioTemp / recensioni.size();
 					punteggio = (int)(Math.round(punteggioTemp * 10)) / 10.0;
@@ -97,17 +110,32 @@
 	    		</div>
 	    		<div class= "descrizione" >
 	    		<label> Descrizione:</label>
-	    			<p class = infospottext><%= descrizione %></p>	
-	    				
+	    			<p class = infospottext><%= descrizione %></p>		    				
 	    		</div>
 	    		
 	    		<div>
 	    			<label> Presenze segnalate: </label>
 	    			<p class = "infospottext"><%= presenzeSegnalate %></p>
 	    		</div>
-	    			<label> Affluenza </label>
+	    		
+	    		<%
+	    		//Logica per calcolo affluenza
+	    		double totAffluenza = affluenzaMattina + affluenzaPomeriggio + affluenzaSera;
+	    		double percMAT = affluenzaMattina / totAffluenza * 100;
+	    		percMAT = (int)(Math.round(percMAT * 100)) / 100.0;
+	    		double percPOM = affluenzaPomeriggio / totAffluenza * 100;
+	    		percPOM = (int)(Math.round(percPOM * 100)) / 100.0;
+	    		double percSER = affluenzaSera / totAffluenza * 100;
+	    		percSER = (int)(Math.round(percSER * 100)) / 100.0;
+	    		%>
+	    		
 	    		<div>
-	    			
+	    			<label> Affluenza: </label>
+	    			<ul>
+	    				<li><label>Mattina: <%= percMAT %></label></li>
+	    				<li><label>Pomeriggio: <%= percPOM %></label></li>
+	    				<li><label>Sera: <%= percSER %></label></li>
+	    			</ul>
 	    		</div>
 	    		
 	    		<div class ="bottoni">
@@ -117,11 +145,20 @@
 					  	<input type="submit" name="segnalaspot" value="Segnala Spot" >
 					  	<input type="submit" name="aggiungipreferiti" value="&#128150;" >
 					  	<input type="submit" name="backhome" id="home" value="Home" >
-				 	</form>
-	    		
+				 	</form>	    		
 	    		</div>
 	    	
-	    	
+	    		<%
+	    		if(session.getAttribute("aggiunto") != null)
+	    		{
+	    			%>
+	    			<div>
+	    				<p>Lo spot è stato aggiunto ai preferiti</p>
+	    			</div>
+	    			<%
+	    			session.removeAttribute("aggiunto");
+	    		}
+	    		%>
 	    	</div>
     	</div>
     	

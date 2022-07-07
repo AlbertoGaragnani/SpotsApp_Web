@@ -91,7 +91,7 @@ public class MockDB {
 		r1.setDescrizione("Una delle scogliere migliori da cui tuffarsi e da cui ammirare il mare. Ottimo anche per snorkling. Consigliato ");
 		
 		Recensione r2 = new Recensione();
-		r1.setId("RE0002");
+		r2.setId("RE0002");
 		r2.setValutazione(3);
 		
 		Recensione r3 = new Recensione();

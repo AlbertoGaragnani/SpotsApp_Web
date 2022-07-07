@@ -39,7 +39,7 @@
 	    	
 	    	<div class="preferiti">
 	    		<h2>I miei preferiti</h2>
-	    		<form action="/SpotsApp/gestioneUtente" method="get">
+	    		<form action="/SpotsApp/visualizzaProfilo" method="post">
 		    		<%
 		    		List<Spot> preferiti = new ArrayList<>();
 		    		MockDB db = MockDB.getInstance();
@@ -56,6 +56,7 @@
 				    	 			<h3><%= s.getNome() %></h3>
 				    	 			<img class="spotListImg" src=<%= img %> /><p><%= s.getIndirizzo() %></p>
 				    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
+				    	 			<button type="submit"  value=<%= s.getId() %> name="rimuovipreferiti" >Rimuovi</button>
 			    	 			</div>
 			    	 		</li>
 			    	 		<br>

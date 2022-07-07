@@ -11,16 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hsqldb.Session;
-
-import com.google.gson.Gson;
-
 import mockDatabase.MockDB;
-import model.Admin;
 import model.Attivita;
-import model.Moderatore;
 import model.Spot;
-import model.Utente;
 
 public class GestioneUtenteController extends HttpServlet{
 	
@@ -96,8 +89,6 @@ public class GestioneUtenteController extends HttpServlet{
 			System.out.println("idSpot in sessione: " + idSpot);
 			req.getSession().setAttribute("idSpot", idSpot);
 			resp.sendRedirect("view/ViewVisualizzaSpot.jsp");
-			//RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/ViewVisualizzaSpot.jsp");
-			//rd.forward(req, resp);
 		}	
 	}
 	
