@@ -57,10 +57,15 @@
 	%>
    </head>
    <body onload="showSlides(1)">
+   		<div>
+				<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
+				<img src="/SpotsApp/images/Icon.png" align="right"/>
+		</div>
    
-   		<h1><%= nome %></h1>
-   		<div class="floatContainer" >
+   
    		
+   		<div class="floatContainervisualizza" >
+   		<h1><%= nome %></h1>
 	   		<div class="container" >
 		   		<%
 		   		for(int i =0;i<immagini.size();i++ )
@@ -92,13 +97,13 @@
 	    		</div>
 	    		<div class= "descrizione" >
 	    		<label> Descrizione:</label>
-	    			<p><%= descrizione %></p>	
+	    			<p class = infospottext><%= descrizione %></p>	
 	    				
 	    		</div>
 	    		
 	    		<div>
 	    			<label> Presenze segnalate: </label>
-	    			<p><%= presenzeSegnalate %></p>
+	    			<p class = "infospottext"><%= presenzeSegnalate %></p>
 	    		</div>
 	    			<label> Affluenza </label>
 	    		<div>

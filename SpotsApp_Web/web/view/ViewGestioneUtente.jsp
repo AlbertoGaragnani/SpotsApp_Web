@@ -16,9 +16,14 @@
    	<% if(session.getAttribute("currentUser")!=null)
    	{
 	%>
+		<div>
+				<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
+				<img src="/SpotsApp/images/Icon.png" align="right"/>
+		</div>
 		
-		<h1>Home Utente</h1>
+		
    		<div>
+   		<h1>Home Utente</h1>
 	   		<h2>Cerca Spot</h2>
 	   		<p>Inserisci i criteri di ricerca dello Spot</p>
 	   		<form action="/SpotsApp/gestioneUtente" method="post">
