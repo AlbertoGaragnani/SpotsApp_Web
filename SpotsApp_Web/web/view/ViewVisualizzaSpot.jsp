@@ -103,7 +103,7 @@
 	    		{
 	    			%>
 	    			<div>
-	    				<p>Lo spot è stato aggiunto ai preferiti</p>
+	    				<p>Lo spot ï¿½ stato aggiunto ai preferiti</p>
 	    			</div>
 	    			<%
 	    			session.removeAttribute("aggiunto");
@@ -192,7 +192,7 @@
 				    	 			<h3><%= r.getTitolo() %></h3>
 				    	 			<div id="descrizionne"><%= r.getDescrizione() %></div>
 				    	 			<input hidden="true" name="idRecensione" value=<%= r.getId() %> />
-				    	 			<input type="submit"  name="segnalarecensione" value="Segnala" />
+				    	 			<input type="button"  name="segnalarecensione" value="Segnala" />
 				    	 		</div>
 			    	 		</li>
 			    	 		<%
