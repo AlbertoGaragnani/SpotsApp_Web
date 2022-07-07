@@ -36,7 +36,28 @@ public class LasciaRecensioneController extends HttpServlet{
 		 String idSpot = (String) req.getSession().getAttribute("idSpot");
 		 
 		 //Recupero permanenza
-		 String mattina = req.getParameter("mattina");
+		 String [] selected = req.getParameterValues("permanenza");
+		 if(selected != null)
+		 {
+			 for(int i=0;i<selected.length;i++)
+			 {
+				 System.out.println("selected: " + selected[i]);
+				 if(selected[i].equals("MATTINA"))
+				 {
+					 permanenza.add(Permanenza.MATTINA);
+				 }
+				 else if(selected[i].equals("POMERIGGIO"))
+				 {
+					 permanenza.add(Permanenza.POMERIGGIO);
+				 }
+				 else if(selected[i].equals("SERA"))
+				 {
+					 permanenza.add(Permanenza.SERA);
+				 }
+			 }
+		 }
+		 
+	/*	 String mattina = req.getParameter("mattina");
 		 if(mattina != null)
 			 permanenza.add(Permanenza.MATTINA);
 		 String pomeriggio = req.getParameter("pomeriggio");
@@ -44,7 +65,9 @@ public class LasciaRecensioneController extends HttpServlet{
 			 permanenza.add(Permanenza.POMERIGGIO);
 		 String sera = req.getParameter("sera");
 		 if(sera != null)
-			 permanenza.add(Permanenza.SERA);
+			 permanenza.add(Permanenza.SERA);    */
+		 
+		 
 
 		 //Recupero titolo
 		 String titoloRecensione = req.getParameter("titoloRecensione");
