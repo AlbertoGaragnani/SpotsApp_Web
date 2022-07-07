@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Attivita" %>
 <%@ page import="model.Spot" %>
+<%@ page import="mockDatabase.MockDB" %>
 
 <html>
    <head>
@@ -11,7 +12,22 @@
         <script type="text/javascript" src="scripts/visualizzaspot.js"></script>
    </head>
    
-   <% String idSpot = (String)session.getAttribute("idSpot"); %>
+   <% 
+   		String idSpot = (String)session.getAttribute("idSpot"); 
+   		String nome="";
+   		MockDB db = MockDB.getInstance();
+		List<Spot> spots = db.getSpots();
+		for(Spot s : spots)
+		{
+			if(idSpot.equals(s.getId()))
+			{
+				nome = s.getNome();
+				
+			}
+			
+		}
+   
+   %>
    <body>
       	<div>
 			<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
@@ -41,7 +57,7 @@
          	  
 		-->  
 				<form class="form" action="/SpotsApp/lasciaRecensione" method="POST">
-				  <div class="form__title"><%= idSpot %></div>
+				  <div class="form__title"><%= nome %></div>
 				  <p class="form__desc">
 				  Esprimi il tuo parere sullo spot!</p>
 				  <div class="form__item">
@@ -72,7 +88,7 @@
 				  </div>
 				</form>	         	  
          </div>
-
+		
         <% 
 	
 		if (session.getAttribute("Errore")!=null && session.getAttribute("Errore").equals("Errore"))
@@ -83,5 +99,6 @@
      		session.removeAttribute("Errore");
     	}
      	%>
+     	<a href="ViewVisualizzaSpot.jsp" id="backlink" style="position:fixed;bottom:0;right:5px">Back</a>
    </body>
 </html>
