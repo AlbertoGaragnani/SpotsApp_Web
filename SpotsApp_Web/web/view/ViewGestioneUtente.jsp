@@ -7,7 +7,7 @@
    <head>
 	<!--	<meta http-equiv="Refresh" content= "2; URL=paginaPrincipale"/>   -->
       <title>GestioneUtente</title>
-		<link type="text/css" href="${pageContext.request.contextPath}/styles/stile.css" rel="stylesheet"></link>
+		<link type="text/css" href="${pageContext.request.contextPath}/styles/homeutente.css" rel="stylesheet"></link>
 		<script type="text/javascript" src="scripts/GestioneUtente.js"></script>
 		<script type="text/javascript" src="scripts/utils.js"></script>
    </head>
@@ -20,65 +20,68 @@
 				<img src="/SpotsApp/images/LogoSmall.png" align="left"/>
 				<img src="/SpotsApp/images/Icon.png" align="right"/>
 		</div>
-		
-		
-   		<div>
-   		<h1>Home Utente</h1>
-	   		<h2>Cerca Spot</h2>
-	   		<p>Inserisci i criteri di ricerca dello Spot</p>
-	   		<form action="/SpotsApp/gestioneUtente" method="post">
-	   			<label>Indirizzo <input type="text" name="indirizzo" size="30"/></label><br>
-	      		<label>Attivita 
-	      		<select name="attivita">
-	      		<option value="" >Attivita</option>
-	      			<%
-	      			for(Attivita a : Attivita.values())
-	      			{
-	      				%>
-	      				<option value=<%= a.name() %>><%= a.name() %></option>
-	      				<%
-	      			}
-	      			%>
-	      		</select>
-	      		</label><br>
-	      		<input type="submit" name="cercaspot" value="CercaSpot"/>
-	      		
-	     	</form>
-    	</div>
-     
-	     <%
-	     if(session.getAttribute("listaSpot") != null)
-	     {
-	    	 %>
-	    	 <div>
-		    	 <form action="/SpotsApp/gestioneUtente" method="get">
-		    	 	<ol>
-		    	 	<%
-		    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
-		    	 	for(Spot s : listaSpot)
-		    	 	{
-		    	 		System.out.println(s.getId());
-		    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
-		    	 		%>
-		    	 		<li >
-		    	 			<div class="listspotItem" >
-			    	 			<h3><%= s.getNome() %></h3>
-			    	 			<br>
-			    	 			<img class="spotListImg" src=<%= img %> /><p><%= s.getIndirizzo() %></p>
-			    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
-		    	 			</div>
-		    	 		</li>
-		    	 		<br>
-		    	 		<%
-		    	 	}
-		    	 	%>
-		    	 	</ol>
-		    	 </form>
-	    	 </div>
-	    	 <%
-	     }
-	     %>
+		<h1>HOME UTENTE</h1><br><br>
+		<div class="floatContainer">
+	   		<div class="home" align="center">
+		   		<h2>Cerca Spot</h2>
+		   		<p>Inserisci i criteri di ricerca dello Spot</p>
+		   		<form action="/SpotsApp/gestioneUtente" method="post">
+		   		<div class="form_item" >
+		   			<label>Indirizzo</label> <input type="text" name="indirizzo" size="30"/>
+		   		</div>
+		   		<div class="form_item">
+		      		<label>Attivita 
+		      		<select name="attivita">
+		      		<option value="" >Attivita</option>
+		      			<%
+		      			for(Attivita a : Attivita.values())
+		      			{
+		      				%>
+		      				<option value=<%= a.name() %>><%= a.name() %></option>
+		      				<%
+		      			}
+		      			%>
+		      		</select>
+		      		</label><br>
+		      	</div>
+		      		<input type="submit" name="cercaspot" value="CercaSpot"/>
+		      		
+		     	</form>
+	    	</div>
 	     
+		     <%
+		     if(session.getAttribute("listaSpot") != null)
+		     {
+		    	 %>
+		    	 <div class="spotResults">
+			    	 <form action="/SpotsApp/gestioneUtente" method="get">
+			    	 	<ol id="listaspot">
+			    	 	<%
+			    	 	List<Spot> listaSpot = (List<Spot>) session.getAttribute("listaSpot");
+			    	 	for(Spot s : listaSpot)
+			    	 	{
+			    	 		System.out.println(s.getId());
+			    	 		String img = s.getImmagini().get(0).getPath().replace('\\', '/');
+			    	 		%>
+			    	 		<li >
+			    	 			<div class="listspotItem" >
+				    	 			<h3><%= s.getNome() %></h3>
+				    	 			<br>
+				    	 			<img class="spotListImg" src=<%= img %> /><p><%= s.getIndirizzo() %></p>
+				    	 			<button type="submit"  value=<%= s.getId() %> name="visualizzaspot" >Visualizza Spot</button>
+			    	 			</div>
+			    	 		</li>
+			    	 		<br>
+			    	 		<%
+			    	 	}
+			    	 	%>
+			    	 	</ol>
+			    	 </form>
+		    	 </div>
+		    	 <%
+		     }
+		     %>
+	     </div>
 	     <div>
 		 	<form action="/SpotsApp/gestioneUtente" method="get">
 		     	<input type="submit" name="logout" value="Logout" >
